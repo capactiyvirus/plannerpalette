@@ -1,12 +1,14 @@
 // src/app/(public)/products/[id]/page.tsx
 import { notFound, redirect } from 'next/navigation';
 import { products } from '@/data/products'
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  etsyUrl: string;
-}
+
+
+// interface Product {
+//   id: string;
+//   title: string;
+//   price: number;
+//   etsyUrl: string;
+// }
 
 
 
