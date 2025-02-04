@@ -19,15 +19,11 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
-
-export default async function ProductPage({
-  params
-}: {
-  params: { id: string }
-}) {
+export type paramsType = Promise<{ id: string }>;
+export default async function ProductPage(props: { params: paramsType }) {
   // Properly await the resolution of params
-  const { id } = await Promise.resolve(params);
-  
+  //const { id } = await Promise.resolve(params);
+  const { id } = await props.params;
   const product = products.find(p => p.id === id);
 
   if (!product) notFound();
