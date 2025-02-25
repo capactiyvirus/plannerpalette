@@ -1,9 +1,10 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Pen, BookOpen, ScrollText } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import DesktopNavbar from '@/components/desktop/dNavbar'
+import TypewriterEffect from '@/components/desktop/TextEffect';
 
 // Original color palette you provided
 const colors = {
@@ -34,173 +35,6 @@ const colors = {
 // };
 
 
-interface TextInstance {
-  id: number;
-  text: string;
-  position: {
-      top: string;
-      left: string;
-      rotation: number;
-  };
-  isMoving: boolean;
-  selectedTextIndex: number;
-}
-
-
-const TypewriterEffect = () => {
-  const [instances, setInstances] = useState<TextInstance[]>([]);
-  const [scrollY, setScrollY] = useState(0);
-  
-  const writingQuotes = [
-      "Once upon a time... Words became stories, and stories became adventures.",
-      "In the realm of imagination, every word holds infinite possibilities.",
-      "Through the ink of inspiration flows the magic of creation.",
-      "Stories weave threads of imagination into tapestries of wonder.",
-      "Every blank page is a canvas awaiting your creative touch.",
-      "Words are the bridges between reality and dreams.",
-      "In the quiet moments, stories whisper their secrets.",
-      "Where imagination roams, stories find their way home.",
-  ];
-
-  // Modified to use pixel values instead of percentages
-  const generatePosition = () => {
-    const viewportHeight = window.innerHeight;
-    const randomTop = Math.random() * (viewportHeight * 0.7) + (viewportHeight * 0.15);
-    const random = Math.random() * 2 - 1;
-    return {
-      top: `${randomTop + scrollY}px`,
-      left: `${random * 50 + 50}%`,
-      rotation: Math.random() * 10 - 5
-    };
-  };
-
-  const getRandomText = (previousIndex: number) => {
-      let newIndex;
-      do {
-          newIndex = Math.floor(Math.random() * writingQuotes.length);
-      } while (newIndex === previousIndex && writingQuotes.length > 1);
-      return newIndex;
-  };
-
-  // Add scroll position tracking
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-      const initialInstances = Array.from({ length: 30 }, (_, index) => ({
-          id: index,
-          text: '',
-          position: generatePosition(),
-          isMoving: false,
-          selectedTextIndex: getRandomText(-1)
-      }));
-      setInstances(initialInstances);
-
-      initialInstances.forEach((instance, index) => {
-          let currentText = '';
-          let isTyping = true;
-
-          const animate = () => {
-              const currentInstance = instances[index] || initialInstances[index];
-              const fullText = writingQuotes[currentInstance.selectedTextIndex];
-
-              if (isTyping) {
-                  if (currentText.length < fullText.length) {
-                      currentText = fullText.slice(0, currentText.length + 1);
-                      setInstances(prev => 
-                          prev.map(inst => 
-                              inst.id === index ? { ...inst, text: currentText } : inst
-                          )
-                      );
-                      setTimeout(animate, 100);
-                  } else {
-                      setTimeout(() => {
-                          isTyping = false;
-                          animate();
-                      }, 2000);
-                  }
-              } else {
-                  if (currentText.length > 0) {
-                      currentText = currentText.slice(0, -1);
-                      setInstances(prev => 
-                          prev.map(inst => 
-                              inst.id === index ? { ...inst, text: currentText } : inst
-                          )
-                      );
-                      setTimeout(animate, 50);
-                  } else {
-                      isTyping = true;
-                      setInstances(prev => {
-                          const prevInstance = prev.find(i => i.id === index);
-                          return prev.map(inst => 
-                              inst.id === index ? {
-                                  ...inst,
-                                  isMoving: true,
-                                  selectedTextIndex: getRandomText(prevInstance?.selectedTextIndex || 0)
-                              } : inst
-                          );
-                      });
-                      
-                      setTimeout(() => {
-                          setInstances(prev => 
-                              prev.map(inst => 
-                                  inst.id === index ? {
-                                      ...inst,
-                                      position: generatePosition(),
-                                      isMoving: false
-                                  } : inst
-                              )
-                          );
-                          currentText = '';
-                          animate();
-                      }, 1000);
-                  }
-              }
-          };
-
-          setTimeout(() => animate(), index * 1000);
-      });
-  }, []);
-
-  return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
-          <div className="relative w-full h-full">
-              <AnimatePresence>
-                  {instances.map((instance) => (
-                      <motion.div
-                          key={instance.id}
-                          className="absolute"
-                          style={{
-                              fontFamily: '"Playfair Display", serif',
-                              color: `${colors.accent2}`,
-                              top: instance.position.top,
-                              left: instance.position.left,
-                              transform: `rotate(${instance.position.rotation}deg)`,
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              fontSize: '1.5rem',
-                              lineHeight: '1.5',
-                              maxWidth: 'none',
-                              opacity: instance.isMoving ? 0 : 0.7,
-                              pointerEvents: 'none'
-                          }}
-                      >
-                          {instance.text}
-                      </motion.div>
-                  ))}
-              </AnimatePresence>
-          </div>
-      </div>
-  );
-
-  return;
-};
 
 
 const buttonVariants = {
@@ -220,12 +54,16 @@ export default function Home() {
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: `${colors.secondary}` }}>
       {/* Hero Section with Decorative Elements */}
+      <DesktopNavbar />
       <TypewriterEffect  />
       <div className='relative'>
-      
+           
+
       <div className="relative z-10">
+
       <section className="relative py-24" style={{ backgroundColor: colors.primary }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-36 relative flex">
+          
         <Image
                 src="/logo.png"
                 alt="Literary Writing Resources Logo"

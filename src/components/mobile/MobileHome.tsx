@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Pen, BookOpen, ScrollText, Menu, X } from 'lucide-react';
+import { products } from '@/data/products';
+import ProductCard from '@/components/ProductCard';
+import ConstructionBanner from '@/components/construction';
 
 const colors = {
   primary: '#2c3b3a',    // Deep teal
@@ -33,27 +36,32 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => (
     className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50"
   >
     <div className="p-4">
+      
       <button onClick={onClose} className="mb-8">
         <X className="h-6 w-6" />
       </button>
       <nav className="space-y-4">
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary }}>Home</a>
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary }}>Resources</a>
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary }}>Products</a>
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary }}>Contact</a>
+        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Home</a>
+        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Resources</a>
+        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Products</a>
+        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Contact</a>
       </nav>
+      
     </div>
+    
   </motion.div>
 );
 
 // Mobile-optimized TypewriterEffect
 const MobileTypewriterEffect = () => {
   const [text, setText] = useState('');
-  const quotes = [
+  const quotes = React.useMemo(() => [
     "Once upon a time...",
     "Through the ink of inspiration...",
     "Where imagination roams..."
-  ];
+  ], []);
+
+  const maxLength = Math.max(...quotes.map(quote => quote.length));
 
   useEffect(() => {
     let currentQuoteIndex = 0;
@@ -79,10 +87,16 @@ const MobileTypewriterEffect = () => {
 
     const timer = setInterval(type, isDeleting ? 50 : 100);
     return () => clearInterval(timer);
-  }, []);
+  }, [quotes]);
 
   return (
-    <div className="text-center py-4 px-2" style={{ color: colors.accent2 }}>
+    <div 
+      className="flex items-center justify-center h-20 px-2" 
+      style={{ 
+        color: colors.accent2,
+        minWidth: `${maxLength}ch`
+      }}
+    >
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -93,13 +107,16 @@ const MobileTypewriterEffect = () => {
     </div>
   );
 };
-
+ 
 const MobileHome = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
+  
     <div className="min-h-screen bg-white">
+
       {/* Mobile Header */}
+      
       <header className="fixed top-0 w-full bg-white z-40 shadow-sm">
         <div className="flex justify-between items-center p-4">
           <h1 className="text-xl font-serif" style={{ color: colors.primary }}>
@@ -112,16 +129,18 @@ const MobileHome = () => {
       </header>
 
       <MobileNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-
       {/* Mobile Hero Section */}
       <section className="pt-20" style={{ backgroundColor: colors.primary }}>
+      <ConstructionBanner></ConstructionBanner>
         <div className="px-4 py-12 text-center">
+          
           <h2 className="text-3xl text-white mb-4 font-serif">
             Craft Your Story
           </h2>
           <p className="text-gray-200 mb-6">
             Discover the art of storytelling through our curated resources.
           </p>
+          
           <MobileTypewriterEffect />
           <motion.button
             whileTap={{ scale: 0.95 }}
@@ -136,9 +155,16 @@ const MobileHome = () => {
       {/* Mobile Resources Grid */}
       <section className="px-4 py-12">
         <h3 className="text-2xl text-center mb-8 font-serif" style={{ color: colors.primary }}>
-          Writing Resources
+          Top Workbooks
         </h3>
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    {products.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+
+                  <div className="border-b border-gray-300 my-4"></div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
             {
               icon: <Pen />,
