@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Product } from '@/data/products';
 import Image from 'next/image';
 
+
 export default function ProductCard({ product }: { product: Product }) {
   const formattedPrice = new Intl.NumberFormat('en-US', { 
     style: 'currency', 
