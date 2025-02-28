@@ -10,9 +10,14 @@ interface MobileTypewriterEffectProps {
 
 const MobileTypewriterEffect: React.FC<MobileTypewriterEffectProps> = ({ 
   quotes = [
-    "Once upon a time...",
-    "Through the ink of inspiration...",
-    "Where imagination roams..."
+    "Once upon a time... Words became stories, and stories became adventures.",
+    "In the realm of imagination, every word holds infinite possibilities.",
+    "Through the ink of inspiration flows the magic of creation.",
+    "Stories weave threads of imagination into tapestries of wonder.",
+    "Every blank page is a canvas awaiting your creative touch.",
+    "Words are the bridges between reality and dreams.",
+    "In the quiet moments, stories whisper their secrets.",
+    "Where imagination roams, stories find their way home.",
   ],
   textColor = '#F5E6D3',
   height = 'h-12'

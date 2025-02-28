@@ -1,27 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode} from 'react';
 import { products } from '@/data/products';
-import ProductCard from '@/components/ProductCard';
-import Link from 'next/link';
-import { Calendar, Shield, Heart, ArrowRight } from 'lucide-react';
-import InteractiveButton from '@/components/InteractiveButton';
-import ConstructionBanner from '@/components/construction';
-// Update colors to match home page
-const colors = {
-  primary: '#2c3b3a',    // Deep teal
-  secondary: '#a2a282',  // Sage
-  accent1: '#6e725a',    // Olive
-  accent2: '#798274',    // Muted green
-  accent3: '#7c8c76',    // Forest green
-  dark: '#414138',       // Deep olive
-  darkTeal: '#2b3b38',   // Dark teal
-  light: {
-    parchment: '#F5E6D3',  // Warm light background
-    sage: '#E8E6D9',       // Light sage
-    mint: '#E6EDE8',       // Light mint
-    cream: '#F9F6F0',      // Cream
-    stone: '#E8E6E1'       // Light stone
-  }
-};
+import FeaturedGuides from '@/components/FeatureGuide';
+import { Calendar, Shield, Heart } from 'lucide-react';
+import colors from '@/components/colors';
+import MobileTypewriterEffect from '@/components/mobile/TypeWriterEffect';
+
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -57,8 +40,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.light.cream }}>
       {/* Hero Section */}
-      
-      <ConstructionBanner></ConstructionBanner>
+          
       <section className="relative py-20" style={{ backgroundColor: colors.primary }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -74,46 +56,37 @@ export default function Home() {
             }}>
               Discover our collection of beautifully crafted writing guides designed to enhance your storytelling journey
             </p>
-            <InteractiveButton 
+            <MobileTypewriterEffect 
+                quotes={[
+                  "Once upon a time... Words became stories, and stories became adventures.",
+                  "In the realm of imagination, every word holds infinite possibilities.",
+                  "Through the ink of inspiration flows the magic of creation.",
+                  "Stories weave threads of imagination into tapestries of wonder.",
+                  "Every blank page is a canvas awaiting your creative touch.",
+                  "Words are the bridges between reality and dreams.",
+                  "In the quiet moments, stories whisper their secrets.",
+                  "Where imagination roams, stories find their way home.",
+                ]}
+                textColor="#798274" // Using your accent2 color
+                // height="h-8" // Optional height adjustment
+              />
+            {/* <InteractiveButton 
               baseColor={colors.accent1}
               hoverColor={colors.accent2}
             >
               Explore Collection
-            </InteractiveButton>
+            </InteractiveButton> */}
           </div>
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-16" style={{ backgroundColor: colors.light.sage + '33' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl" style={{ 
-              fontFamily: '"Playfair Display", serif',
-              color: colors.primary 
-            }}>
-              Featured Guides
-            </h2>
-            <Link 
-              href="/products" 
-              className="flex items-center transition-colors duration-200 hover:opacity-80"
-              style={{ 
-                color: colors.accent1,
-                fontFamily: '"Lora", serif'
-              }}
-            >
-              View All
-              <ArrowRight className="ml-1 h-4 w-4" />
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Customized usage */}
+      <FeaturedGuides 
+        products={products}
+        title="Writing Resources"
+        limit={3}
+        backgroundColor={colors.light.parchment + '40'}
+      />
 
       {/* Features */}
       <section className="py-20" style={{ backgroundColor: `${colors.secondary}20` }}>

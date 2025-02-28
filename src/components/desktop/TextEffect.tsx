@@ -2,6 +2,7 @@
 'use client';
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+//import { animationState, instances } from 'framer-motion/types';
 
 // Color definitions
 const colors = {
@@ -238,7 +239,7 @@ const TypewriterEffect = () => {
         if (state.timer) clearTimeout(state.timer);
       });
     };
-  }, [generatePosition, getRandomText, writingQuotes, instances.length]);
+  }, [generatePosition, getRandomText, writingQuotes, instances.length, instances, animationStates]);
 
   return (
     // Add -z-10 to move text behind other elements

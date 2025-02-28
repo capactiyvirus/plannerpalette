@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { Pen, BookOpen, ScrollText } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import DesktopNavbar from '@/components/desktop/dNavbar'
-import TypewriterEffect from '@/components/desktop/TextEffect';
+import DesktopNavbar from '@/components/desktop/olddNavbar'
 
 // Original color palette you provided
 const colors = {
@@ -55,7 +54,6 @@ export default function Home() {
     <div className="relative min-h-screen" style={{ backgroundColor: `${colors.secondary}` }}>
       {/* Hero Section with Decorative Elements */}
       <DesktopNavbar />
-      <TypewriterEffect  />
       <div className='relative'>
            
 

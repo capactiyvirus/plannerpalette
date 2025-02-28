@@ -1,137 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Pen, BookOpen, ScrollText, Menu, X } from 'lucide-react';
+import { Pen, BookOpen, ScrollText} from 'lucide-react';
 import { products } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
-import ConstructionBanner from '@/components/construction';
+import colors from '@/components/colors';
+import MobileTypewriterEffect from '@/components/mobile/TypeWriterEffect';
 
-const colors = {
-  primary: '#2c3b3a',    // Deep teal
-  secondary: '#a2a282',  // Sage
-  accent1: '#6e725a',    // Olive
-  accent2: '#798274',    // Muted green
-  accent3: '#7c8c76',    // Forest green
-  dark: '#414138',       // Deep olive
-  darkTeal: '#2b3b38',   // Dark teal
-  light: {
-    parchment: '#F5E6D3',
-    sage: '#E8E6D9',
-    mint: '#E6EDE8',
-    cream: '#F9F6F0',
-    stone: '#E8E6E1'
-  }
-};
-
-interface MobileNavProps {
-    isOpen: boolean;
-    onClose: () => void;
-    }
-
-// Mobile navigation menu component
-const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => (
-  <motion.div
-    initial={{ x: '100%' }}
-    animate={{ x: isOpen ? 0 : '100%' }}
-    transition={{ type: 'tween' }}
-    className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50"
-  >
-    <div className="p-4">
-      
-      <button onClick={onClose} className="mb-8">
-        <X className="h-6 w-6" />
-      </button>
-      <nav className="space-y-4">
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Home</a>
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Resources</a>
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Products</a>
-        <a href="#" className="block py-2 text-lg" style={{ color: colors.primary, fontFamily: '"Playfair Display, serif' }}>Contact</a>
-      </nav>
-      
-    </div>
-    
-  </motion.div>
-);
-
-// Mobile-optimized TypewriterEffect
-const MobileTypewriterEffect = () => {
-  const [text, setText] = useState('');
-  const quotes = React.useMemo(() => [
-    "Once upon a time...",
-    "Through the ink of inspiration...",
-    "Where imagination roams..."
-  ], []);
-
-  const maxLength = Math.max(...quotes.map(quote => quote.length));
-
-  useEffect(() => {
-    let currentQuoteIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-
-    const type = () => {
-      const currentQuote = quotes[currentQuoteIndex];
-
-      if (!isDeleting && currentCharIndex < currentQuote.length) {
-        setText(currentQuote.slice(0, currentCharIndex + 1));
-        currentCharIndex++;
-      } else if (isDeleting && currentCharIndex > 0) {
-        setText(currentQuote.slice(0, currentCharIndex - 1));
-        currentCharIndex--;
-      } else if (currentCharIndex === 0) {
-        isDeleting = false;
-        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-      } else {
-        isDeleting = true;
-      }
-    };
-
-    const timer = setInterval(type, isDeleting ? 50 : 100);
-    return () => clearInterval(timer);
-  }, [quotes]);
-
-  return (
-    <div 
-      className="flex items-center justify-center h-20 px-2" 
-      style={{ 
-        color: colors.accent2,
-        minWidth: `${maxLength}ch`
-      }}
-    >
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="text-lg italic"
-      >
-        {text}
-      </motion.p>
-    </div>
-  );
-};
  
 const MobileHome = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-  
     <div className="min-h-screen bg-white">
-
       {/* Mobile Header */}
-      
-      <header className="fixed top-0 w-full bg-white z-40 shadow-sm">
-        <div className="flex justify-between items-center p-4">
-          <h1 className="text-xl font-serif" style={{ color: colors.primary }}>
-            Literary Haven
-          </h1>
-          <button onClick={() => setIsMenuOpen(true)}>
-            <Menu className="h-6 w-6" />
-          </button>
-        </div>
-      </header>
-
-      <MobileNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       {/* Mobile Hero Section */}
       <section className="pt-20" style={{ backgroundColor: colors.primary }}>
-      <ConstructionBanner></ConstructionBanner>
         <div className="px-4 py-12 text-center">
           
           <h2 className="text-3xl text-white mb-4 font-serif">
@@ -141,7 +22,20 @@ const MobileHome = () => {
             Discover the art of storytelling through our curated resources.
           </p>
           
-          <MobileTypewriterEffect />
+          <MobileTypewriterEffect 
+                quotes={[
+                  "Once upon a time... Words became stories, and stories became adventures.",
+                  "In the realm of imagination, every word holds infinite possibilities.",
+                  "Through the ink of inspiration flows the magic of creation.",
+                  "Stories weave threads of imagination into tapestries of wonder.",
+                  "Every blank page is a canvas awaiting your creative touch.",
+                  "Words are the bridges between reality and dreams.",
+                  "In the quiet moments, stories whisper their secrets.",
+                  "Where imagination roams, stories find their way home.",
+                ]}
+                textColor="#798274" // Using your accent2 color
+                height="h-16" // Optional height adjustment
+              />
           <motion.button
             whileTap={{ scale: 0.95 }}
             className="px-6 py-2 text-white rounded-none border-2 mt-4"
