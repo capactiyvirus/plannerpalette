@@ -2,9 +2,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import  SocialFooter from '@/components/layout/SocialFooter';
+import  SocialFooter from '@/components/SocialFooter';
 import Navigation from '@/components/Navigation';
-import ConstructionBanner from '@/components/construction';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 
 const geistSans = Geist({
@@ -30,17 +30,18 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`} >
+      <ThemeProvider>
         <div className="min-h-screen flex flex-col">
           <main className="flex-grow">
           <Navigation title="Literary Haven" />
-          <ConstructionBanner></ConstructionBanner>
           
             {children}
           </main>
           
           <SocialFooter />
         </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Pen, BookOpen, ScrollText } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import DesktopNavbar from '@/components/desktop/olddNavbar'
+import DesktopNavbar from '@/components/oldcomps/olddNavbar'
 
 // Original color palette you provided
 const colors = {

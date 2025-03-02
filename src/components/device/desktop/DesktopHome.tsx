@@ -1,40 +1,12 @@
-import React, { ReactNode} from 'react';
+import React from 'react';
 import { products } from '@/data/products';
-import FeaturedGuides from '@/components/FeatureGuide';
-import { Calendar, Shield, Heart } from 'lucide-react';
+import FeaturedGuides from '@/components/device/desktop/FeatureGuide';
 import colors from '@/components/colors';
-import MobileTypewriterEffect from '@/components/mobile/TypeWriterEffect';
+import MobileTypewriterEffect from '@/components/device/mobile/TypeWriterEffect';
+import BannerGuide from '@/components/device/desktop/BannerGuides';
 
 
-interface FeatureCardProps {
-  icon: ReactNode;
-  title: string;
-  description: string;
-  color: string;
-}
 
-const FeatureCard = ({ icon, title, description, color }: FeatureCardProps) => (
-  <div className="p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
-    <div 
-      className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
-      style={{ backgroundColor: `${color}20`, color: color }}
-    >
-      {icon}
-    </div>
-    <h3 className="text-xl mb-2" style={{ 
-      fontFamily: '"Playfair Display", serif',
-      color: colors.primary 
-    }}>
-      {title}
-    </h3>
-    <p style={{ 
-      fontFamily: '"Lora", serif',
-      color: colors.dark 
-    }}>
-      {description}
-    </p>
-  </div>
-);
 
 export default function Home() {
   return (
@@ -88,38 +60,8 @@ export default function Home() {
         backgroundColor={colors.light.parchment + '40'}
       />
 
-      {/* Features */}
-      <section className="py-20" style={{ backgroundColor: `${colors.secondary}20` }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl text-center mb-16" style={{ 
-            fontFamily: '"Playfair Display", serif',
-            color: colors.primary 
-          }}>
-            Why Choose Our Guides?
-          </h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-            <FeatureCard 
-              icon={<Calendar />}
-              title="Expertly Crafted"
-              description="Each guide is thoughtfully designed to enhance your writing journey"
-              color={colors.accent2}
-            />
-            <FeatureCard 
-              icon={<Shield />}
-              title="Comprehensive Resources"
-              description="In-depth materials to support every aspect of your storytelling"
-              color={colors.accent1}
-            />
-            <FeatureCard 
-              icon={<Heart />}
-              title="Writer Approved"
-              description="Tested and loved by our community of storytellers"
-              color={colors.accent3}
-            />
-          </div>
-        </div>
-      </section>
-
+      <BannerGuide />
+      
       {/* Newsletter */}
       <section className="py-10" style={{ backgroundColor: colors.darkTeal }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

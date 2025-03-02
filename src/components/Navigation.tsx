@@ -1,47 +1,48 @@
+// src/components/Navigation.tsx
 'use client';
 import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
-import Navbar from '@/components/Navbar'; // Your existing Navbar component
+import Navbar from '@/components/Navbar';
+import ThemeToggle from '@/components/ThemeToggle';
 import colors from '@/components/colors';
 import Link from 'next/link';
+import { useTheme } from '@/context/ThemeContext';
 
-interface NavigationProps {
-  title?: string;
-  bgColor?: string;
-  textColor?: string;
-}
-
-const Navigation: React.FC<NavigationProps> = ({
-  title = "Literary Haven",
-}) => {
+const Navigation = ({ title = "Literary Haven" }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme } = useTheme();
   
   return (
     <>
-      <header className="fixed top-0 w-full bg-white z-40 shadow-sm">
-        <div className="flex justify-between items-center p-4">
+      <header className="fixed top-0 w-full z-40 shadow-sm transition-colors" 
+        style={{ 
+          backgroundColor: theme === 'dark' ? colors.darkMode.background : 'white',
+          color: theme === 'dark' ? colors.darkMode.text : colors.primary
+        }}>
+        <div className="flex justify-between items-center p-2">
           <Link href="/">
-            <h1 className="text-xl font-serif" 
+            <h1 className="text-lg font-serif" 
             style={{ 
-                color: colors.primary,
-                height: '32px' // Match this to your header height
-                
-                }}>
+                color: theme === 'dark' ? colors.darkMode.text : colors.primary,
+                height: '24px'
+            }}>
               {title}
             </h1>
           </Link>
-          <button 
-            onClick={() => setIsMenuOpen(true)}
-            className="focus:outline-none"
-            aria-label="Open navigation menu"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
+            <button 
+              onClick={() => setIsMenuOpen(true)}
+              className="focus:outline-none"
+              aria-label="Open navigation menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </header>
       <Navbar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-      {/* Add padding to content to account for fixed header */}
-      <div className="pt-16">
+      <div className="pt-10">
         {/* Content will be rendered as children */}
       </div>
     </>

@@ -2,8 +2,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import MobileHome from '@/components/mobile/MobileHome';
-import DesktopHome from '@/components/desktop/DesktopHome'; // Your existing home component
+import MobileHome from '@/components/device/mobile/MobileHome';
+import DesktopHome from '@/components/device/desktop/DesktopHome'; // Your existing home component
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);

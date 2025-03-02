@@ -5,15 +5,16 @@ import { ArrowRight } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import colors from '@/components/colors';
 import { products } from '@/data/products';
+import { useTheme } from '@/context/ThemeContext';
 
 // Define the props interface
 interface FeaturedGuidesProps {
-  products: Array<typeof products[0]>; // Replace 'any' with your actual Product type
+  products: Array<typeof products[0]>; 
   title?: string;
   viewAllLink?: string;
   limit?: number;
   backgroundColor?: string;
-}
+} 
 
 const FeaturedGuides: React.FC<FeaturedGuidesProps> = ({
   products,
@@ -22,21 +23,31 @@ const FeaturedGuides: React.FC<FeaturedGuidesProps> = ({
   limit = 3,
   backgroundColor = colors.light.sage + '33'
 }) => {
+  const { theme } = useTheme();
+  
+  // Determine colors based on theme
+  const bgColor = theme === 'dark' 
+    ? colors.darkMode.cardBg // Use dark mode background with same transparency
+    : backgroundColor;
+    
+  const textColor = theme === 'dark' ? colors.darkMode.text : colors.primary;
+  const linkColor = theme === 'dark' ? colors.light.parchment : colors.accent1;
+  
   return (
-    <section className="py-16" style={{ backgroundColor }}>
+    <section className="py-16 transition-colors duration-300" style={{ backgroundColor: bgColor }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl" style={{ 
+          <h2 className="text-3xl transition-colors duration-300" style={{ 
             fontFamily: '"Playfair Display", serif',
-            color: colors.primary 
+            color: textColor
           }}>
             {title}
           </h2>
           <Link 
             href={viewAllLink} 
-            className="flex items-center transition-colors duration-200 hover:opacity-80"
+            className="flex items-center transition-colors duration-300 hover:opacity-80"
             style={{ 
-              color: colors.accent1,
+              color: linkColor,
               fontFamily: '"Lora", serif'
             }}
           >

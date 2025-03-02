@@ -34,6 +34,22 @@ export default function AboutPortfolioPage() {
     }
   ];
 
+  const aboutText = {
+    intro: "Hello! I'm Brianna, a passionate writer, educator, and the creator behind Literary Haven. With over 15 years of experience in creative writing and teaching, I've dedicated my career to helping writers discover their unique voice and craft compelling stories.",
+    
+    journey: "My journey began with a deep love for storytelling that eventually led me to earn my B.A. (Hons.) in Creative Writing & English. Since then, I've guided dozens of aspiring authors, worked as VP of my university's creative writing club, and developed a collection of writing resources that have helped thousands of aspiring authors.",
+    
+    mission: "I founded Literary Haven with a simple mission: to create accessible, practical, and inspiring resources that empower writers at every stage of their journey. Whether you're drafting your first novel or polishing your tenth, my guides are designed to help you navigate the challenges of storytelling with confidence and creativity."
+  };
+
+  const philosophyText = {
+    paragraph1: "I believe that storytelling is both an art and a craft. While creativity fuels our imagination, it's the structured approach to character, plot, and world-building that transforms ideas into compelling narratives. My teaching philosophy centers on balancing these elements to help writers express their unique vision.",
+    
+    paragraph2: "Every writer's journey is different, which is why I create resources that can be adapted to various writing styles and processes. Whether you're a meticulous planner or an intuitive discovery writer, my guides provide flexible frameworks that enhance your natural approach rather than forcing you into a rigid system.",
+    
+    paragraph3: "Above all, I believe that great writing comes from authenticity, practice, and community. Through Literary Haven, I aim to provide not just techniques and templates, but also encouragement and inspiration to help you persist through challenges and celebrate your growth as a storyteller."
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.light.cream }}>
       {/* Hero Section */}
@@ -61,14 +77,14 @@ export default function AboutPortfolioPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:flex items-center gap-12">
             <div className="lg:w-2/5 mb-8 lg:mb-0">
-              <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-lg">
+              <div className="relative h-[500px] w-full rounded-lg overflow-hidden shadow-lg">
                 {/* Replace with your actual profile image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-800 opacity-30"></div>
+                
                 <Image 
-                  src="/images/author-portrait.jpg" 
+                  src="/images/bri.png" 
                   alt="Literary Haven Creator"
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes=""
                   className="object-cover"
                   priority
                 />
@@ -87,25 +103,18 @@ export default function AboutPortfolioPage() {
                 fontFamily: '"Lora", serif',
                 color: colors.dark
               }}>
-                <p className="mb-4">
-                  Hello! I&apos;m Your Name, a passionate writer, educator, and the creator behind Literary Haven. With over X years of experience in creative writing and teaching, I&apos;ve dedicated my career to helping writers discover their unique voice and craft compelling stories.
-                </p>
-                
-                <p className="mb-4">
-                  My journey began with a deep love for storytelling that eventually led me to earn my Your Degree in Your Field. Since then, I&apos;ve published number novels, taught creative writing at institutions/workshops, and developed a collection of writing resources that have helped thousands of aspiring authors.
-                </p>
-                
-                <p className="mb-6">
-                  I founded Literary Haven with a simple mission: to create accessible, practical, and inspiring resources that empower writers at every stage of their journey. Whether you&apos;re drafting your first novel or polishing your tenth, my guides are designed to help you navigate the challenges of storytelling with confidence and creativity.
-                </p>
-                
+
+                {/* TEXT ---- CONTENT */}
+                <p className="mb-4">{aboutText.intro}</p>
+                <p className="mb-4">{aboutText.journey}</p>
+                <p className="mb-6">{aboutText.mission}</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center" 
                       style={{ backgroundColor: `${colors.accent1}20`, color: colors.accent1 }}>
                       <PenTool size={20} />
                     </div>
-                    <span>Published Author</span>
+                    <span>Content Creator</span>
                   </div>
                   
                   <div className="flex items-center space-x-3">
@@ -129,7 +138,7 @@ export default function AboutPortfolioPage() {
                       style={{ backgroundColor: `${colors.secondary}20`, color: colors.secondary }}>
                       <Award size={20} />
                     </div>
-                    <span>Resource Creator</span>
+                    <span>Creative Development Specialist</span>
                   </div>
                 </div>
               </div>
@@ -222,17 +231,9 @@ export default function AboutPortfolioPage() {
               fontFamily: '"Lora", serif',
               color: colors.dark
             }}>
-              <p className="mb-4">
-              I believe that storytelling is both an art and a craft. While creativity fuels our imagination, it&apos;s the structured approach to character, plot, and world-building that transforms ideas into compelling narratives. My teaching philosophy centers on balancing these elements to help writers express their unique vision.
-            </p>
-
-            <p className="mb-4">
-              Every writer&apos;s journey is different, which is why I create resources that can be adapted to various writing styles and processes. Whether you&apos;re a meticulous planner or an intuitive discovery writer, my guides provide flexible frameworks that enhance your natural approach rather than forcing you into a rigid system.
-            </p>
-
-            <p>
-              Above all, I believe that great writing comes from authenticity, practice, and community. Through Literary Haven, I aim to provide not just techniques and templates, but also encouragement and inspiration to help you persist through challenges and celebrate your growth as a storyteller.
-            </p>
+              <p className="mb-4">{philosophyText.paragraph1}</p>
+              <p className="mb-4">{philosophyText.paragraph2}</p>
+              <p>{philosophyText.paragraph3}</p>
             </div>
           </div>
         </div>
