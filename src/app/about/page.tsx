@@ -16,36 +16,36 @@ export default function AboutPortfolioPage() {
   const headingColor = theme === 'dark' ? colors.darkMode.text : colors.primary;
   const textColor = theme === 'dark' ? colors.darkMode.text + 'CC' : colors.dark;
   const cardBgColor = theme === 'dark' ? colors.darkMode.cardBg : 'white';
-  const sectionBgColor = theme === 'dark' ? colors.darkMode.cardBg + '30' : colors.light.sage + '30';
+  //const sectionBgColor = theme === 'dark' ? colors.darkMode.cardBg + '30' : colors.light.sage + '30';
   const heroSectionBg = theme === 'dark' ? colors.darkMode.primary : colors.primary;
   const lightText = theme === 'dark' ? colors.darkMode.text : 'white';
   const subtleText = theme === 'dark' ? colors.light.parchment : colors.light.parchment;
-  const tagBgColor = theme === 'dark' ? colors.darkMode.cardBg + '80' : colors.light.mint;
+  //const tagBgColor = theme === 'dark' ? colors.darkMode.cardBg + '80' : colors.light.mint;
   
   // Portfolio projects - replace with your actual projects
-  const portfolioProjects = [
-    {
-      id: 'project1',
-      title: 'Fantasy Novel Series',
-      description: 'A five-book epic fantasy series exploring themes of power, identity, and redemption.',
-      image: '/images/portfolio-fantasy.jpg',
-      tags: ['Fantasy', 'Series', 'Published Work']
-    },
-    {
-      id: 'project2',
-      title: 'Character Development Workshop',
-      description: 'Online workshop series helping writers create complex, memorable characters.',
-      image: '/images/portfolio-workshop.jpg',
-      tags: ['Teaching', 'Character Development', 'Online']
-    },
-    {
-      id: 'project3',
-      title: 'Literary Magazine',
-      description: 'Founded and edited a quarterly literary magazine showcasing emerging writers.',
-      image: '/images/portfolio-magazine.jpg',
-      tags: ['Editing', 'Publishing', 'Community']
-    }
-  ];
+  // const portfolioProjects = [
+  //   {
+  //     id: 'project1',
+  //     title: 'Fantasy Novel Series',
+  //     description: 'A five-book epic fantasy series exploring themes of power, identity, and redemption.',
+  //     image: '/images/portfolio-fantasy.jpg',
+  //     tags: ['Fantasy', 'Series', 'Published Work']
+  //   },
+  //   {
+  //     id: 'project2',
+  //     title: 'Character Development Workshop',
+  //     description: 'Online workshop series helping writers create complex, memorable characters.',
+  //     image: '/images/portfolio-workshop.jpg',
+  //     tags: ['Teaching', 'Character Development', 'Online']
+  //   },
+  //   {
+  //     id: 'project3',
+  //     title: 'Literary Magazine',
+  //     description: 'Founded and edited a quarterly literary magazine showcasing emerging writers.',
+  //     image: '/images/portfolio-magazine.jpg',
+  //     tags: ['Editing', 'Publishing', 'Community']
+  //   }
+  // ];
 
   const aboutText = {
     intro: "Hello! I'm Brianna, a passionate writer, educator, and the creator behind Literary Haven. With over 15 years of experience in creative writing and teaching, I've dedicated my career to helping writers discover their unique voice and craft compelling stories.",
@@ -177,7 +177,7 @@ export default function AboutPortfolioPage() {
         </div>
       </section>
       
-      {/* Portfolio Section */}
+      {/* Portfolio Section
       <section className="py-16 transition-colors duration-300" style={{ backgroundColor: sectionBgColor }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -248,7 +248,7 @@ export default function AboutPortfolioPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       
       {/* Philosophy Section */}
       <section className="py-16">
