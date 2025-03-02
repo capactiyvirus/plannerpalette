@@ -6,7 +6,6 @@ import  SocialFooter from '@/components/SocialFooter';
 import Navigation from '@/components/Navigation';
 import { ThemeProvider } from '@/context/ThemeContext';
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

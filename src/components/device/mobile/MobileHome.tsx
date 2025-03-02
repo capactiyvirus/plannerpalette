@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Pen, BookOpen, ScrollText} from 'lucide-react';
 import colors from '@/components/colors';
-import MobileTypewriterEffect from '@/components/device/mobile/TypeWriterEffect';
+import MobileTypewriterEffect from '@/components/TypeWriterEffect';
 import FeatureGuides from '@/components/device/mobile/FeatureGuide';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -24,12 +24,12 @@ const MobileHome = () => {
     <div className="min-h-screen transition-colors duration-300" style={{ backgroundColor: bgColor }}>
       {/* Mobile Header */}
       {/* Mobile Hero Section */}
-      <section className="pt-20 transition-colors duration-300" style={{ backgroundColor: heroSectionBg }}>
+      <section className="py-5 transition-colors duration-300" style={{ backgroundColor: heroSectionBg }}>
         <div className="px-4 py-12 text-center">
-          <h2 className={`text-3xl mb-4 font-serif transition-colors duration-300 ${heroTextColor}`}>
+          <h2 className={`text-5xl mb-4 font-serif transition-colors duration-300 ${heroTextColor}`}>
             Craft Your Story
           </h2>
-          <p className={`mb-6 transition-colors duration-300 ${heroSubtextColor}`}>
+          <p className={`mb-4 transition-colors duration-300 ${heroSubtextColor}`}>
             Discover the art of storytelling through our curated resources.
           </p>
           <div className="flex justify-center w-full">
@@ -45,7 +45,7 @@ const MobileHome = () => {
                 "Where imagination roams, stories find their way home.",
               ]}
               textColor={theme === 'dark' ? colors.light.parchment : "#798274"}
-              height="h-16"
+              //height="h-14"
             />
           </div>
         </div>

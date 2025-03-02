@@ -39,3 +39,26 @@ html, body {
   --background: #192121;
   --foreground: #F5E6D3;
 }
+
+
+/* Add to your CSS */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+

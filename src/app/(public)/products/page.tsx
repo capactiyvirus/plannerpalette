@@ -5,27 +5,33 @@ import { products } from '@/data/products';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
-
-// Color palette from your design system
-const colors = {
-  primary: '#2c3b3a',    // Deep teal
-  secondary: '#a2a282',  // Sage
-  accent1: '#6e725a',    // Olive
-  accent2: '#798274',    // Muted green
-  accent3: '#7c8c76',    // Forest green
-  dark: '#414138',       // Deep olive
-  darkTeal: '#2b3b38',   // Dark teal
-  light: {
-    parchment: '#F5E6D3',  // Warm light background
-    sage: '#E8E6D9',       // Light sage
-    mint: '#E6EDE8',       // Light mint
-    cream: '#F9F6F0',      // Cream
-    stone: '#E8E6E1'       // Light stone
-  }
-};
+import colors from '@/components/colors';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function ProductsPage() {
+  const { theme } = useTheme();
   const [activeFilter, setActiveFilter] = useState('all');
+
+  // Theme-dependent colors
+  const bgColor = theme === 'dark' ? colors.darkMode.background : colors.light.cream;
+  const heroBgColor = theme === 'dark' ? colors.darkMode.primary : colors.primary;
+  const heroTextColor = theme === 'dark' ? colors.darkMode.text : 'white';
+  const heroSubtextColor = theme === 'dark' ? colors.darkMode.text : colors.light.parchment;
+  const cardBgColor = theme === 'dark' ? colors.darkMode.cardBg : 'white';
+  const headingColor = theme === 'dark' ? colors.darkMode.text : colors.primary;
+  const textColor = theme === 'dark' ? colors.darkMode.text + 'CC' : 'text-gray-600';
+  const inactiveFilterTextColor = theme === 'dark' ? colors.darkMode.text + '99' : 'text-gray-700';
+  const newsletterBgColor = theme === 'dark' ? colors.darkMode.cardBg + '40' : colors.light.sage + '40';
+  const priceTagBgColor = theme === 'dark' ? colors.darkMode.cardBg : 'white';
+  const priceTagTextColor = theme === 'dark' ? colors.light.parchment : colors.accent1;
+  const fileTypeBgColor = theme === 'dark' ? colors.accent1 + '40' : 'bg-blue-100';
+  const fileTypeTextColor = theme === 'dark' ? colors.light.parchment : 'text-blue-800';
+  const linkColor = theme === 'dark' ? colors.light.parchment : colors.accent1;
+  const inputBgColor = theme === 'dark' ? colors.darkMode.background : 'white';
+  const inputBorderColor = theme === 'dark' ? colors.darkMode.cardBg : colors.accent3;
+  const inputTextColor = theme === 'dark' ? colors.darkMode.text : 'inherit';
+  const buttonBgColor = theme === 'dark' ? colors.accent1 + 'CC' : colors.accent1;
+  const noResultsTextColor = theme === 'dark' ? colors.darkMode.text + '99' : 'text-gray-500';
 
   // Filter function
   const getFilteredProducts = () => {
@@ -50,22 +56,22 @@ export default function ProductsPage() {
   const filteredProducts = getFilteredProducts();
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.light.cream }}>
+    <div className="min-h-screen transition-colors duration-300" style={{ backgroundColor: bgColor }}>
       {/* Hero Banner */}
       <div 
-        className="relative py-20" 
-        style={{ backgroundColor: colors.primary }}
+        className="relative py-20 transition-colors duration-300" 
+        style={{ backgroundColor: heroBgColor }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl mb-6" style={{
+          <h1 className="text-4xl md:text-5xl mb-6 transition-colors duration-300" style={{
             fontFamily: '"Playfair Display", serif',
-            color: 'white'
+            color: heroTextColor
           }}>
             Writing Guides & Resources
           </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8" style={{
+          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 transition-colors duration-300" style={{
             fontFamily: '"Lora", serif',
-            color: colors.light.parchment
+            color: heroSubtextColor
           }}>
             Discover our collection of professionally crafted writing guides to enhance your storytelling journey
           </p>
@@ -85,13 +91,14 @@ export default function ProductsPage() {
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`px-4 py-2 rounded-lg transition-colors duration-200 ${
-                activeFilter === filter.id 
-                  ? 'text-white' 
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
+              className={`px-4 py-2 rounded-lg transition-colors duration-200`}
               style={{
-                backgroundColor: activeFilter === filter.id ? colors.accent1 : 'transparent',
+                backgroundColor: activeFilter === filter.id 
+                  ? colors.accent1 
+                  : 'transparent',
+                color: activeFilter === filter.id 
+                  ? 'white' 
+                  : inactiveFilterTextColor,
                 fontFamily: '"Lora", serif'
               }}
             >
@@ -105,7 +112,8 @@ export default function ProductsPage() {
           {filteredProducts.map(product => (
             <div 
               key={product.id} 
-              className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+              style={{ backgroundColor: cardBgColor }}
             >
               <div className="relative h-64 w-full">
                 <Image 
@@ -116,8 +124,10 @@ export default function ProductsPage() {
                   className="object-cover"
                   priority={false}
                 />
-                <div className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-sm">
-                  <span className="text-sm font-medium" style={{ color: colors.accent1 }}>
+                <div className="absolute top-4 right-4 p-2 rounded-full shadow-sm transition-colors duration-300"
+                     style={{ backgroundColor: priceTagBgColor }}>
+                  <span className="text-sm font-medium" 
+                        style={{ color: priceTagTextColor }}>
                     ${product.price.toFixed(2)}
                   </span>
                 </div>
@@ -125,27 +135,32 @@ export default function ProductsPage() {
               
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl mb-2" style={{ 
+                  <h3 className="text-xl mb-2 transition-colors duration-300" style={{ 
                     fontFamily: '"Playfair Display", serif',
-                    color: colors.primary 
+                    color: headingColor
                   }}>
                     {product.title}
                   </h3>
-                  <span className="inline-flex items-center px-2 py-1 rounded-full bg-blue-100 text-blue-800 text-xs">
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs transition-colors duration-300"
+                        style={{
+                          backgroundColor: fileTypeBgColor,
+                          color: fileTypeTextColor
+                        }}>
                     {product.fileType}
                   </span>
                 </div>
                 
-                <p className="text-gray-600 mb-4 line-clamp-3" style={{ 
-                  fontFamily: '"Lora", serif' 
+                <p className="mb-4 line-clamp-3 transition-colors duration-300" style={{ 
+                  fontFamily: '"Lora", serif',
+                  color: textColor
                 }}>
                   {product.description.split('\n')[0]}
                 </p>
                 
                 <Link 
                   href={`/products/${product.id}`} 
-                  className="inline-flex items-center text-sm font-medium transition-colors duration-200"
-                  style={{ color: colors.accent1 }}
+                  className="inline-flex items-center text-sm font-medium transition-colors duration-200 hover:underline"
+                  style={{ color: linkColor }}
                 >
                   View on Etsy
                   <ArrowRight className="ml-1 h-4 w-4" />
@@ -157,23 +172,27 @@ export default function ProductsPage() {
         
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-lg text-gray-500">No products found matching your filter.</p>
+            <p className="text-lg transition-colors duration-300" 
+               style={{ color: noResultsTextColor }}>
+              No products found matching your filter.
+            </p>
           </div>
         )}
       </div>
 
       {/* Newsletter Section */}
-      <section className="py-12 px-4" style={{ backgroundColor: colors.light.sage + '40' }}>
+      <section className="py-12 px-4 transition-colors duration-300" 
+               style={{ backgroundColor: newsletterBgColor }}>
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl mb-4" style={{ 
+          <h2 className="text-2xl md:text-3xl mb-4 transition-colors duration-300" style={{ 
             fontFamily: '"Playfair Display", serif',
-            color: colors.primary 
+            color: headingColor
           }}>
             Get Writing Tips & Special Offers
           </h2>
-          <p className="mb-6" style={{ 
+          <p className="mb-6 transition-colors duration-300" style={{ 
             fontFamily: '"Lora", serif',
-            color: colors.dark
+            color: textColor
           }}>
             Join our writing community to receive exclusive tips, early access to new guides, and special discounts.
           </p>
@@ -181,16 +200,18 @@ export default function ProductsPage() {
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-4 py-3 rounded border focus:outline-none focus:ring-2"
+              className="flex-1 px-4 py-3 rounded border focus:outline-none focus:ring-2 transition-colors duration-300"
               style={{ 
-                borderColor: colors.accent3,
+                backgroundColor: inputBgColor,
+                borderColor: inputBorderColor,
+                color: inputTextColor,
                 fontFamily: '"Lora", serif'
               }}
             />
             <button
-              className="px-6 py-3 text-white rounded transition-colors duration-200"
+              className="px-6 py-3 text-white rounded transition-colors duration-200 hover:opacity-90"
               style={{ 
-                backgroundColor: colors.accent1,
+                backgroundColor: buttonBgColor,
                 fontFamily: '"Lora", serif'
               }}
             >

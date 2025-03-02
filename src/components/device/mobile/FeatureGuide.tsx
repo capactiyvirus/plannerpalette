@@ -5,6 +5,7 @@ import colors from '@/components/colors';
 import { products } from '@/data/products';
 import { useTheme } from '@/context/ThemeContext';
 
+
 const FeatureGuide = () => {
   const { theme } = useTheme();
   
@@ -20,7 +21,7 @@ const FeatureGuide = () => {
         Top Workbooks
       </h3>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
+        { products.slice(0,3).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
