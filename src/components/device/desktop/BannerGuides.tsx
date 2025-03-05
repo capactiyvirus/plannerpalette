@@ -1,8 +1,9 @@
 'use client';
 import React, { ReactNode } from 'react';
 import colors from '@/components/colors';
-import { Calendar, Shield, Heart } from 'lucide-react';
+import { Pen, Shield, Heart, Book } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import ContentCarousel from '@/components/device/desktop/ContentCarousel'; // We'll need to create this file
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -68,11 +69,11 @@ const BannerGuide = () => {
   
   return (
     <section 
-      className="py-20 transition-colors duration-300" 
+      className="py-2 transition-colors duration-300" 
       style={{ backgroundColor: sectionBgColor }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 
+      <div className="py- sm:px-6 lg:px-8">
+        {/* <h2 
           className="text-3xl text-center mb-16 transition-colors duration-300" 
           style={{ 
             fontFamily: '"Playfair Display", serif',
@@ -80,27 +81,28 @@ const BannerGuide = () => {
           }}
         >
           Why Choose Our Guides?
-        </h2>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+        </h2> */}
+        {/* <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
           <FeatureCard 
-            icon={<Calendar />}
-            title="Expertly Crafted"
-            description="Created by a storyteller with 15+ years of experience and a B.A. in Creative Writing, our guides transform scattered ideas into cohesive narratives with proven frameworks that bypass common writing pitfalls."
+            icon={<Heart />}
+            title="Approved by Writers Globally"
+            description="Purchased and loved by 250+ writers around the world looking to add depth and finer details to their characters, worldbuilding, romances, plot, and then weave them into their overall story in a way that makes sense."
             color={colors.accent2}
           />
           <FeatureCard 
-            icon={<Shield />}
-            title="Comprehensive Resources"
-            description="Beyond surface level advice, our workbooks address the psychological barriers of writing from impostor syndrome to perfectionism with practical exercises that build both skill and confidence."
+            icon={<Book />}
+            title="Academically-Backed Designs"
+            description="Created by a writer backed by a B.A. (Hons.) in Creative Writing & English and 15+ years of experience writing fiction narratives and and learning to craft immersive stories."
             color={colors.accent1}
           />
           <FeatureCard 
-            icon={<Heart />}
-            title="Writer Approved"
-            description="Developed alongside emerging authors who faced the same challenges you're experiencing now, our guides have helped countless writers transform their creative vision into structured, publishable stories."
+            icon={<Pen />}
+            title="Writer-Led Guidance"
+            description="These workbooks are filled with dynamic prompts, charts, tables, questions, and more – offering the structure needed to develop compelling novels without compromising on the freedom to tailor each section to your needs."
             color={colors.accent3}
           />
-        </div>
+        </div> */}
+      <ContentCarousel />
       </div>
     </section>
   );

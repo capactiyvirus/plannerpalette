@@ -16,6 +16,7 @@ export default function Home() {
   const headingColor = theme === 'dark' ? colors.darkMode.text : 'white';
   const subheadingColor = theme === 'dark' ? colors.darkMode.text : colors.light.parchment;
   const typewriterColor = theme === 'dark' ? colors.light.parchment : "#798274";
+  const newsletterBg = theme === 'dark' ? colors.darkMode.cardBg : colors.darkTeal;
 
   
   return (
@@ -65,6 +66,31 @@ export default function Home() {
 
       <BannerGuide />
       
+      {/* <section className="py-10 transition-colors duration-300" style={{ backgroundColor: newsletterBg }}>
+        <div className="max-w-7xl mx-auto my-auto px-4 py-0 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl mb-4 transition-colors duration-300" style={{
+              fontFamily: '"Playfair Display", serif',
+              color: headingColor
+            }}>
+              Join Our Writing Community
+            </h2>
+            <p 
+              className="mb-8 transition-colors duration-300"
+              style={{
+                fontFamily: '"Lora", serif',
+                color: subheadingColor
+              }}
+            >
+              Subscribe to our various accounts to receive writing tips, exclusive offers, and updates on new guides. We are on Youtube,
+              Threads, and Instagram.
+            </p>
+            
+          </div>
+        </div>
+      </section>       */}
+
+
       {/* Newsletter
       <section className="py-10 transition-colors duration-300" style={{ backgroundColor: newsletterBg }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
