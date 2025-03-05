@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Pen, BookOpen, ScrollText} from 'lucide-react';
+import { Pen, BookOpen, Heart} from 'lucide-react';
 import colors from '@/components/colors';
 import MobileTypewriterEffect from '@/components/TypeWriterEffect';
 import FeatureGuides from '@/components/device/mobile/FeatureGuide';
@@ -61,19 +61,19 @@ const MobileHome = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
             {
-              icon: <Pen />,
-              title: "Character Creation",
-              description: "Transform flat characters into compelling personalities with psychological depth that drives your story forward and captivates readers."
+              icon: <Heart />,
+              title: "Approved by Writers Globally",
+              description: "Purchased and loved by 250+ writers around the world looking to add depth and finer details to their characters, worldbuilding, romances, plot, and then weave them into their overall story in a way that makes sense."
             },
             {
               icon: <BookOpen />,
-              title: "World Building",
-              description: "Develop cohesive, believable worlds with consistent rules and rich details that enhance your story without overwhelming your narrative."
+              title: "Academically-Backed Designs",
+              description: "Created by a writer backed by a B.A. (Hons.) in Creative Writing & English and 15+ years of experience writing fiction narratives and and learning to craft immersive stories."
             },
             {
-              icon: <ScrollText />,
-              title: "Plot Development",
-              description: "Craft engaging plots with perfect pacing, meaningful conflicts, and satisfying resolutions that keep readers turning pages late into the night."
+              icon: <Pen />,
+              title: "Writer-Led Guidance",
+              description: "These workbooks are filled with dynamic prompts, charts, tables, questions, and more – offering the structure needed to develop compelling novels without compromising on the freedom to tailor each section to your needs."
             }
           ].map((resource, index) => (
             <motion.div

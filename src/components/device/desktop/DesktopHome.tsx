@@ -28,13 +28,13 @@ export default function Home() {
               fontFamily: '"Playfair Display", serif',
               color: headingColor
             }}>
-              Fresh from the Writing Desk
+              Make Your Novel a Masterpiece
             </h1>
-            <p className="text-xl mb-8 max-w-2xl mx-auto transition-colors duration-300" style={{
+            <p className="text-x2 mb-8 max-w-2xl mx-auto transition-colors duration-300" style={{
               fontFamily: '"Lora", serif',
               color: subheadingColor
             }}>
-              Writing doesn&apos;t have to be complicated. Check out my YouTube channel for in-depth conversations on storytelling and how to craft awesome books.
+              Struggling with plot holes, flat characters, or writer&apos;s block? My specialized workbooks guide you through all the core elements (and finer details) of your story so that you can craft a book readers can&apos;t put down. No more staring at blank pages wondering where to begin.
             </p>
             <div className="flex justify-center w-full">
               <MobileTypewriterEffect 
