@@ -45,7 +45,7 @@ const SocialFooter = () => {
           {/* Copyright and Links */}
           <div className="text-center space-y-4">
             <div className="flex justify-center space-x-6">
-              <a href="/privacy" className="text-gray-300 hover:text-white text-sm">Privacy Policy</a>
+              {/* <a href="/privacy" className="text-gray-300 hover:text-white text-sm">Privacy Policy</a> */}
               <a href="/terms" className="text-gray-300 hover:text-white text-sm">Terms of Service</a>
               <a href="/contact" className="text-gray-300 hover:text-white text-sm">Contact</a>
             </div>

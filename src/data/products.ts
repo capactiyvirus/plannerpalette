@@ -59,7 +59,7 @@ export interface Product {
 
         Don't hesitate! Start creating your immersive world today!
        `,
-      price: 6.99,
+      price: 8.99,
       fileType: 'PDF',
       etsyUrl: "https://www.etsy.com/ca/listing/1823226554/ultimate-fantasy-world-building-workbook",
       imageUrl: '/images/ultimate.jpg',
@@ -120,7 +120,7 @@ export interface Product {
 
         Don't hesitate! Start creating your spiciest moments today!
       `,
-      price: 4.99,
+      price: 5.99,
       fileType: 'PDF',
       etsyUrl: 'https://www.etsy.com/ca/listing/1861021913/spicy-romance-scene-workbook-intimate?ref=shop_home_feat_2&logging_key=606fb5cc16320f3c02af0d23a17436394d691368%3A1861021913',
       imageUrl: '/images/spicy.jpg',
@@ -184,7 +184,7 @@ PLEASE NOTE:
 Due to the digital nature of this product, no refunds can be issued after download
 
 Don't hesitate! Start creating your immersive world today!`,
-      price: 8.99,
+      price: 10.99,
       fileType: 'PDF',
       etsyUrl: 'https://www.etsy.com/ca/listing/1846811034/ultimate-romantasy-worldbuilding?ref=shop_home_feat_3&logging_key=1a75a69699fec5ec54798bd901eb8607545def07%3A1846811034',
       imageUrl: '/images/romance.jpg',  
@@ -242,9 +242,161 @@ PLEASE NOTE:
 Due to the digital nature of this product, no refunds can be issued after download
 
 Get started on creating memorable characters today!`,
-      price: 1.99,
+      price: 2.99,
       fileType: 'PDF',
       etsyUrl: 'https://www.etsy.com/ca/listing/1829484477/character-development-printable-workbook?ref=shop_home_active_3&crt=1&logging_key=8bbfd664720351b592c26c9891887c3679088857%3A1829484477',
       imageUrl: '/images/character.jpg',
     },
+    {
+      id: '5',
+      title: 'Story Idea Generation & Brainstorming Journal',
+      description: `Turn your thoughts into reality with this story idea generation & brainstorming planner journal! Are you an author with countless story ideas but struggle to organize them into a proper book outline? This digital novel planning template gives you a structured, guided space to capture inspiration and develop your concepts into solid narrative foundations.
+
+✍️ DON'T LET YOUR STORIES GO UNTOLD ✍️
+
+Inside This Digital Story Planner:
+- Novel writing worksheets with targeted questions for plot, character outlines, setting, and conflict
+- Content idea generation exercises to spark fresh story concepts
+- Creative writing prompts and exercises for when inspiration runs dry
+- Character outline templates to develop compelling protagonists (and antagonists!)
+- Story foundation worksheets to transform your ideas into workable plots
+- Visual reference pages for character and setting inspiration
+- Mood board space to capture your story's atmosphere and ~vibe~
+- Plenty of free writing space for your creative thoughts
+
+This workbook is for anyone who:
+- Has multiple story ideas but struggles to develop them
+- Needs help organizing scattered creative thoughts into coherent story outlines
+- Wants structured guidance in the early planning stages
+- Feels stuck in their creative writing process
+- Needs a flexible novel planning template that grows with their ideas
+
+Perfect for:
+- Novelists and writers of all genres (fantasy, scifi, romance, romantasy, thriller, mystery, horror, literary fiction, and more)
+- Game designers
+- Screenwriters
+- Dungeon Masters or Game Masters (Dungeons & Dragons D&D, other TTRPGs)
+- Creative writing students
+
+THIS IS A DIGITAL DOWNLOAD:
+- No physical product will be shipped
+- Instant download available after purchase
+- Can be printed at home or used digitally
+- You'll receive one PDF and one DOCX file (please note that font/formatting changes in the docx file may occur depending on your device or version of Microsoft Word. To ensure accurate formatting, use the PDF file)
+
+As a thank you for supporting my shop, you'll also receive a printable collectible prompt card with your purchase <3
+
+PLEASE NOTE:
+Due to the digital nature of this product, no refunds can be issued after download.
+
+Don't let that bestseller idea slip away! Start plotting with this story ideation journal today!`,
+      price: 3.99,
+      fileType: 'PDF',
+      etsyUrl: 'https://www.etsy.com/ca/listing/1866075631/story-idea-generation-brainstorming?ref=items-pagination-3&crt=1&sts=1&logging_key=433750f23f887501fcf0f6804b782d6c2ef7f08f%3A1866075631',
+      imageUrl: '/images/Brainstorm.jpg',
+    },
+    {
+      id: '6',
+      title: 'Fantasy Magic System Planner',
+      description: `It's time to up the stakes for your fantasy characters with a more nuanced and layered magic system! This comprehensive template helps you create and track every aspect of your world's magic system, keeping it consistent, complex, and believable throughout your story.
+
+✨ CREATE MAGIC THAT READERS GET LOST IN ✨
+
+WHAT'S INCLUDED:
+- 15+ professionally designed worksheets
+- Magic source mapping
+- Spell/power documentation system
+- Magic user profile sheets
+- Artifact cataloging system
+- Cost & consequences tracker
+- Quick reference sheet to glance at while writing
+- Guided prompts to spark creativity
+- Overpowered checklist to ensure your magic system is believable
+- Integration checklist to see how your magic system affects your plot
+- Printable digital format - print at home or use electronically
+
+This workbook is for anyone who:
+- Feels overwhelmed by worldbuilding
+- Wants to create more believable magic and powers
+- Needs help organizing their ideas
+- Values systematic development approaches
+- Aims to create deeply layered stories
+- Wants to avoid plot holes due to inconsistent magic systems
+
+PERFECT FOR:
+- Authors and writers
+- Game designers
+- Worldbuilders
+- RPG creators
+- Anyone writing fantasy or stories that include magic, spells, powers, etc.
+
+THIS IS A DIGITAL DOWNLOAD:
+- No physical product will be shipped
+- Instant download available after purchase
+- Can be printed at home or used digitally
+- You'll receive one PDF and one DOCX file (please note that font/formatting changes in the docx file may occur depending on your device or version of Microsoft Word. To ensure accurate formatting, use the PDF file)
+- You will also receive a free writing prompt card as a thank you for supporting my business :)
+
+✨ Perfectly complements the Ultimate Fantasy Worldbuilding Workbook ✨
+https://plannerpaletteco.etsy.com/ca/listing/1823226554/ultimate-fantasy-world-building-workbook
+
+PLEASE NOTE:
+Due to the digital nature of this product, no refunds can be issued after download.
+
+Don't hesitate! Start creating an awesome magic system today!`,
+      price: 4.99,
+      fileType: 'PDF',
+      etsyUrl: 'https://www.etsy.com/ca/listing/1829645420/fantasy-magic-system-planner?ref=shop_home_active_4&crt=1&sts=1&logging_key=e85df5587677c985047d1d3f42ca34a738cc69cf%3A1829645420',
+      imageUrl: '/images/magic.jpg',
+    },
+    {
+      id: '7',
+      title: '3-Month Author Goal Journal',
+      description: `🌠 CRUSH YOUR NEW YEAR'S WRITING RESOLUTIONS IN 3 MONTHS 🌠
+
+This author goal journal will help make your book-writing dreams a reality! Stop letting another year pass without writing your story. This professionally crafted digital writer planner combines proven creative writing strategies with practical story planning tools to guide you from concept to completed first draft.
+
+Perfect for anyone who:
+- Wants to finally finish their novel this year
+- Needs structure and accountability to reach their writing goals
+- Feels overwhelmed by the writing process
+- Is looking for a clear path to plot development
+- Is participating in NaNoWriMo
+- Is looking for gift ideas for writers
+- Needs help in their self-publishing journey
+
+What's included:
+- Goal setting overview
+- Customizable daily word count trackers up to 13 weeks
+- 5 character development worksheets
+- Plot structure templates from Acts 1-3
+- World-building frameworks
+- Weekly prompts and word counting reflections
+- Writer's block solutions
+
+THIS IS A DIGITAL DOWNLOAD:
+- No physical product will be shipped
+- Instant download available after purchase
+- Can be printed at home or used digitally
+- You'll receive one PDF file (with 1 colour cover page and 1 black & white cover page for less ink usage)
+- You'll also receive a free writing prompt card as a thank you for supporting my business :)
+
+PLEASE NOTE:
+Due to the digital nature of this product, no refunds can be issued after download
+
+Buy now to get your personal novel writing roadmap to becoming a published author!`,
+      price: 7.99,
+      fileType: 'PDF',
+      etsyUrl: 'https://www.etsy.com/ca/listing/1850633707/3-month-author-goal-journal-90-day-novel?ref=shop_home_active_6&sts=1&logging_key=2a94dff8713c4ddd2447aa9d3b13df8308c072ff%3A1850633707',
+      imageUrl: '/images/3month.jpg',
+    },
+    // {
+    //   id: '5',
+    //   title: 'Title',
+    //   description: `description`,
+    //   price: 4.99,
+    //   fileType: 'PDF',
+    //   etsyUrl: 'url',
+    //   imageUrl: '/images/storytelling.jpg',
+    // },
   ];

@@ -33,7 +33,7 @@ export default function RootLayout({
       <ThemeProvider>
         <div className="min-h-screen flex flex-col">
           <main className="flex-grow">
-          <Navigation title="Literary Haven" />
+          <Navigation />
           
             {children}
           </main>

@@ -18,24 +18,32 @@ export default function ProductCard({ product }: { product: Product }) {
     <div className="group relative bg-white p-6 shadow-sm rounded-lg hover:shadow-md transition-shadow"
       style={{ backgroundColor: bgColor }}
       >
-      <div className="relative h-48 w-full flex-shrink-0 gap-4 p-4 mb-3" >
+      <div className="relative h-64 w-full" >
         <Image 
           src={product.imageUrl}
           alt={product.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
+          className="object-cover rounded-t-lg"
           priority={false}
         />
-        <div className='gap-4 p-4 mb-3'> </div>
       </div>
-      <h3 className="text-lg font-semibold text-gray-900" style={{ color: titleColor }}>
+      <div className="p-6 flex-grow">
+      <div className="h-13 mb-2">
+      <h3 className="text-2xl transition-colors duration-300" style={{ 
+        color: titleColor,
+        fontFamily: '"Playfair Display", serif', 
+        }}>
         <Link href={`/products/${product.id}`}>
           <span className="absolute inset-0" />
           {product.title}
         </Link>
       </h3>
-      <p className="mt-2 text-gray-600 line-clamp-3" style={{ color: textColor }}>{product.description}</p>
+      </div>
+      <div className="h-12 mb-2">
+      <p className="text-sm transition-colors duration-300 line-clamp-4" style={{ color: textColor }}>{product.description}</p>
+      </div>
+      </div>
       <div className="mt-4 flex justify-between items-center">
         <span className="text-gray-900 font-bold" style={{ color: titleColor }}>{formattedPrice}</span>
         <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm">

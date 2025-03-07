@@ -8,7 +8,7 @@ import colors from '@/components/colors';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
 
-const Navigation = ({ title = "Literary Haven" }) => {
+const Navigation = ({ title = "Literary Haven By PlannerPalette" }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme } = useTheme();
   

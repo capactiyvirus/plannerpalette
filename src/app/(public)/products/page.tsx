@@ -7,32 +7,27 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import colors from '@/components/colors';
 import { useTheme } from '@/context/ThemeContext';
-
+import { motion } from 'framer-motion';
+import MobileTypewriterEffect from '@/components/TypeWriterEffect';
 export default function ProductsPage() {
   const { theme } = useTheme();
   const [activeFilter, setActiveFilter] = useState('all');
 
-  // Theme-dependent colors
+  // Theme-dependent colors - ONLY THESE ARE MODIFIED
   const bgColor = theme === 'dark' ? colors.darkMode.background : colors.light.cream;
   const heroBgColor = theme === 'dark' ? colors.darkMode.primary : colors.primary;
-  const heroTextColor = theme === 'dark' ? colors.darkMode.text : 'white';
+  const heroTextColor = theme === 'dark' ? colors.darkMode.text : 'white'; // This is fine for dark hero background
   const heroSubtextColor = theme === 'dark' ? colors.darkMode.text : colors.light.parchment;
   const cardBgColor = theme === 'dark' ? colors.darkMode.cardBg : 'white';
-  const headingColor = theme === 'dark' ? colors.darkMode.text : colors.primary;
-  const textColor = theme === 'dark' ? colors.darkMode.text + 'CC' : 'text-gray-600';
-  const inactiveFilterTextColor = theme === 'dark' ? colors.darkMode.text + '99' : 'text-gray-700';
-  const newsletterBgColor = theme === 'dark' ? colors.darkMode.cardBg + '40' : colors.light.sage + '40';
-  const priceTagBgColor = theme === 'dark' ? colors.darkMode.cardBg : 'white';
-  const priceTagTextColor = theme === 'dark' ? colors.light.parchment : colors.accent1;
-  const fileTypeBgColor = theme === 'dark' ? colors.accent1 + '40' : 'bg-blue-100';
-  const fileTypeTextColor = theme === 'dark' ? colors.light.parchment : 'text-blue-800';
-  const linkColor = theme === 'dark' ? colors.light.parchment : colors.accent1;
-  const inputBgColor = theme === 'dark' ? colors.darkMode.background : 'white';
-  const inputBorderColor = theme === 'dark' ? colors.darkMode.cardBg : colors.accent3;
-  const inputTextColor = theme === 'dark' ? colors.darkMode.text : 'inherit';
-  const buttonBgColor = theme === 'dark' ? colors.accent1 + 'CC' : colors.accent1;
-  const noResultsTextColor = theme === 'dark' ? colors.darkMode.text + '99' : 'text-gray-500';
-
+  const headingColor = theme === 'dark' ? colors.darkMode.text : colors.primary; // Changed from colors.dark for better contrast
+  const textColor = theme === 'dark' ? colors.darkMode.text + 'CC' : '#414138'; // Changed from colors.primary for better readability
+  const inactiveFilterTextColor = theme === 'dark' ? colors.darkMode.text + '99' : '#5a5a5a'; // Better contrast
+  const priceTagTextColor = theme === 'dark' ? colors.light.parchment : colors.accent1; // Kept your original
+  const fileTypeBgColor = theme === 'dark' ? colors.accent1 + '40' : '#e6ede8'; // Changed from bg-blue-100
+  const fileTypeTextColor = theme === 'dark' ? colors.light.parchment : colors.accent1; // Changed from text-blue-800
+  const linkColor = theme === 'dark' ? colors.light.parchment : colors.accent1; // Kept your original
+  const noResultsTextColor = theme === 'dark' ? colors.darkMode.text + '99' : '#6e725a'; // Better visibility
+  const typewriterColor = theme === 'dark' ? colors.light.parchment : "#798274";
   // Filter function
   const getFilteredProducts = () => {
     if (activeFilter === 'all') {
@@ -75,6 +70,21 @@ export default function ProductsPage() {
           }}>
             Discover our collection of professionally crafted writing guides to enhance your storytelling journey
           </p>
+          <div className="flex justify-center w-full">
+              <MobileTypewriterEffect 
+                quotes={[
+                  "Once upon a time... Words became stories, and stories became adventures.",
+                  "In the realm of imagination, every word holds infinite possibilities.",
+                  "Through the ink of inspiration flows the magic of creation.",
+                  "Stories weave threads of imagination into tapestries of wonder.",
+                  "Every blank page is a canvas awaiting your creative touch.",
+                  "Words are the bridges between reality and dreams.",
+                  "In the quiet moments, stories whisper their secrets.",
+                  "Where imagination roams, stories find their way home.",
+                ]}
+                textColor={typewriterColor}
+              />
+            </div>
         </div>
       </div>
 
@@ -108,67 +118,89 @@ export default function ProductsPage() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           {filteredProducts.map(product => (
-            <div 
-              key={product.id} 
-              className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
-              style={{ backgroundColor: cardBgColor }}
-            >
+            <motion.div 
+            key={product.id} 
+            className="flex flex-col relative group rounded-lg shadow-md transition-all duration-300 hover:shadow-lg h-[520px] overflow-hidden"
+            whileHover={{ y: -5 }}
+            style={{ backgroundColor: cardBgColor }}
+          >
+              <Link href={`/products/${product.id}`} className="flex-grow">
               <div className="relative h-64 w-full">
                 <Image 
                   src={product.imageUrl}
                   alt={product.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
+                  className="object-cover rounded-t-lg"
                   priority={false}
                 />
-                <div className="absolute top-4 right-4 p-2 rounded-full shadow-sm transition-colors duration-300"
-                     style={{ backgroundColor: priceTagBgColor }}>
-                  <span className="text-sm font-medium" 
-                        style={{ color: priceTagTextColor }}>
-                    ${product.price.toFixed(2)}
-                  </span>
-                </div>
               </div>
               
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl mb-2 transition-colors duration-300" style={{ 
+              <div className="p-6 flex-grow">
+                <div className="h-12 mb-2">
+                  
+                <h3 className="text-xl transition-colors duration-300" style={{ 
                     fontFamily: '"Playfair Display", serif',
                     color: headingColor
                   }}>
                     {product.title}
                   </h3>
-                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs transition-colors duration-300"
+                </div>
+                <div className="h-12 mb-2">
+                <p className="text-sm transition-colors duration-300 line-clamp-4" style={{ 
+                  fontFamily: '"Lora", serif',
+                  color: textColor
+                }}>
+                  {product.description}
+                </p>
+                </div>
+                </div>
+                </Link>
+
+                
+                <div className="mt-auto p-3 pt-3">
+                <div className="flex items-center justify-between mb-4">
+                <span className="text-1xl font-bold" style={{ color: priceTagTextColor }}>{product.price.toFixed(2)}</span>
+                
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs transition-colors duration-300"
                         style={{
                           backgroundColor: fileTypeBgColor,
                           color: fileTypeTextColor
                         }}>
+                    
                     {product.fileType}
                   </span>
                 </div>
+                <div className="w-full">
+                  
+                <a 
+                    href={product.etsyUrl} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 group"
+                    style={{ 
+                      backgroundColor: theme === 'dark' ? 'rgba(110, 114, 90, 0.2)' : 'rgba(110, 114, 90, 0.1)',
+                      color: linkColor,
+                    }}
+                  >
+                    View on Etsy
+                    <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                </div>
                 
-                <p className="mb-4 line-clamp-3 transition-colors duration-300" style={{ 
-                  fontFamily: '"Lora", serif',
-                  color: textColor
-                }}>
-                  {product.description.split('\n')[0]}
-                </p>
-                
-                <Link 
-                  href={`/products/${product.id}`} 
-                  className="inline-flex items-center text-sm font-medium transition-colors duration-200 hover:underline"
-                  style={{ color: linkColor }}
-                >
-                  View on Etsy
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+                </div>
+              
+              </motion.div>
+            
           ))}
-        </div>
+        </motion.div>
         
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
@@ -179,47 +211,6 @@ export default function ProductsPage() {
           </div>
         )}
       </div>
-
-      {/* Newsletter Section */}
-      <section className="py-12 px-4 transition-colors duration-300" 
-               style={{ backgroundColor: newsletterBgColor }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl mb-4 transition-colors duration-300" style={{ 
-            fontFamily: '"Playfair Display", serif',
-            color: headingColor
-          }}>
-            Get Writing Tips & Special Offers
-          </h2>
-          <p className="mb-6 transition-colors duration-300" style={{ 
-            fontFamily: '"Lora", serif',
-            color: textColor
-          }}>
-            Join our writing community to receive exclusive tips, early access to new guides, and special discounts.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-1 px-4 py-3 rounded border focus:outline-none focus:ring-2 transition-colors duration-300"
-              style={{ 
-                backgroundColor: inputBgColor,
-                borderColor: inputBorderColor,
-                color: inputTextColor,
-                fontFamily: '"Lora", serif'
-              }}
-            />
-            <button
-              className="px-6 py-3 text-white rounded transition-colors duration-200 hover:opacity-90"
-              style={{ 
-                backgroundColor: buttonBgColor,
-                fontFamily: '"Lora", serif'
-              }}
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

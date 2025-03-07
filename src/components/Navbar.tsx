@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Home, Info, ShoppingBag, Mail } from 'lucide-react';
+import { X, Home, Info, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import colors from '@/components/colors';
 
@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
     { name: 'Home', path: '/', icon: <Home className="h-4 w-4" /> },
     { name: 'About', path: '/about', icon: <Info className="h-4 w-4" /> },
     { name: 'Products', path: '/products', icon: <ShoppingBag className="h-4 w-4" /> },
-    { name: 'Contact', path: '/contact', icon: <Mail className="h-4 w-4" /> }
+    //{ name: 'Contact', path: '/contact', icon: <Mail className="h-4 w-4" /> }
   ];
 
   return (

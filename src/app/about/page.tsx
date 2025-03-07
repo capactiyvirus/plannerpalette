@@ -1,10 +1,9 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight, BookOpen, PenTool, Users, Award } from 'lucide-react';
+
+import {  BookOpen, PenTool, Users, Award } from 'lucide-react';
 import colors from '@/components/colors';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -56,11 +55,13 @@ export default function AboutPortfolioPage() {
   };
 
   const philosophyText = {
-    paragraph1: "I believe that storytelling is both an art and a craft. While creativity fuels our imagination, it's the structured approach to character, plot, and world-building that transforms ideas into compelling narratives. My teaching philosophy centers on balancing these elements to help writers express their unique vision.",
-    
-    paragraph2: "Every writer's journey is different, which is why I create resources that can be adapted to various writing styles and processes. Whether you're a meticulous planner or an intuitive discovery writer, my guides provide flexible frameworks that enhance your natural approach rather than forcing you into a rigid system.",
-    
-    paragraph3: "Above all, I believe that great writing comes from authenticity, practice, and community. Through Literary Haven, I aim to provide not just techniques and templates, but also encouragement and inspiration to help you persist through challenges and celebrate your growth as a storyteller."
+    paragraph1: "Like watching movies, we read and write books to escape. We suspend our beliefs in logic and physics to flee our overwhelming realities. Willingly, we accept a lie and write it as truth. But are words not authentic if they come from your head onto the paper? Or is that what turns the real into the false, the act of taking it from the body and soul? Wouldn’t the reverse also work, then, consuming something into you or me?",
+    paragraph2: "Words are power, and your thoughts are their source of origin – perhaps, then, the most powerful thing you could ever wield. Writing a book is an execution of that power; what do you want to accomplish with it?",
+    paragraph3: "My first story was about a kitten who escaped its home to play with butterflies in a meadow. Over the decades that followed, my writing evolved in various ways as my beliefs and perspectives on my life and the world changed. Still, I write because it’s my calling.",
+    paragraph4: "And I want to help you with yours.",
+    paragraph5: "There’s been a huge influx of writers over recent years who have amazing talent and imagination but are looking for structured guides and workbooks that they can reuse every time they start writing a new book. If this sounds like you, welcome to the community! ",
+    paragraph6: "I’ve designed my workbooks to give you the structure you need through guiding prompts, exercises, charts, questions, and more, without compromising on versatility and reusability. This means that you can reuse my workbooks as much as you need and tailor them to fit your specific story. ",
+    paragraph7: "Let’s write your next bestseller together, one page at a time.",
   };
 
   return (
@@ -268,14 +269,18 @@ export default function AboutPortfolioPage() {
             }}>
               <p className="mb-4">{philosophyText.paragraph1}</p>
               <p className="mb-4">{philosophyText.paragraph2}</p>
-              <p>{philosophyText.paragraph3}</p>
+              <p className="mb-4">{philosophyText.paragraph3}</p>
+              <p className="mb-4">{philosophyText.paragraph4}</p>
+              <p className="mb-4">{philosophyText.paragraph5}</p>
+              <p className="mb-4">{philosophyText.paragraph6}</p>
+              <p className="mb-4">{philosophyText.paragraph7}</p>
             </div>
           </div>
         </div>
       </section>
       
       {/* Call to Action */}
-      <section className="py-16 transition-colors duration-300" style={{ backgroundColor: heroSectionBg }}>
+      {/* <section className="py-16 transition-colors duration-300" style={{ backgroundColor: heroSectionBg }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl mb-4 transition-colors duration-300" style={{
             fontFamily: '"Playfair Display", serif',
@@ -306,7 +311,7 @@ export default function AboutPortfolioPage() {
             </motion.button>
           </Link>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
