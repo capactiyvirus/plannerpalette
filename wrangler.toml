@@ -1,2 +1,28 @@
+[build]
+command = "npm run build"
 [build.environment]
-NODE_VERSION = "20"
+NODE_VERSION = "20.x"
+
+[site]
+bucket = "./out"  # Your build output directory
+
+[build.processing]
+skip_processing = false
+
+[build.processing.css]
+bundle = true
+minify = true
+
+[build.processing.js]
+bundle = true
+minify = true
+
+[build.processing.html]
+pretty_urls = true
+
+[build.processing.images]
+compress = true
+
+# Required for Pages
+[pages]
+pages_build_output_dir = "out"
