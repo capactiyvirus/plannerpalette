@@ -14,7 +14,7 @@ import colors from '@/components/colors';
 
 export default function ProductPage() {
   const { theme } = useTheme();
-  const product = products.find(p => p.id === '7');
+  const product = products.find(p => p.id === '8');
   
   if (!product) notFound();
   
