@@ -45,20 +45,20 @@ export default function TermsOfServicePage() {
               fontFamily: '"Lora", serif',
               color: textColor
             }}>
-              <p className="mb-6">Last Updated: March 17, 2025</p>
+              <p className="mb-6">Last Updated: March 1, 2025</p>
               
               <h2 style={{ color: headingColor, fontFamily: '"Playfair Display", serif' }}>1. Acceptance of Terms</h2>
               <p>By accessing or using PlannerPalette&apos;s website, services, and products, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
               
               <h2 style={{ color: headingColor, fontFamily: '"Playfair Display", serif' }}>2. Description of Service</h2>
-              <p>PlannerPalette provides digital writing resources, guides, and workbooks (&quot;Products&quot;) designed to assist writers with their creative processes. Our services include website access, digital product downloads, and related content.</p>
+              <p>Literary Haven provides digital writing resources, guides, and workbooks (&quot;Products&quot;) designed to assist writers with their creative processes. Our services include website access, digital product downloads, and related content.</p>
               
               <h2 style={{ color: headingColor, fontFamily: '"Playfair Display", serif' }}>3. Digital Product Purchases</h2>
               <p>All purchases of digital Products are final. Due to the nature of digital downloads, we do not offer refunds once a Product has been purchased and downloaded.</p>
               <p>Products are delivered electronically immediately after purchase. You are responsible for downloading and saving your purchased Products.</p>
               
               <h2 style={{ color: headingColor, fontFamily: '"Playfair Display", serif' }}>4. Intellectual Property Rights</h2>
-              <p>All content on this website and in our Products, including but not limited to text, graphics, logos, images, audio clips, digital downloads, and software, is the property of PlannerPalette and is protected by international copyright laws.</p>
+              <p>All content on this website and in our Products, including but not limited to text, graphics, logos, images, audio clips, digital downloads, and software, is the property of Literary Haven and is protected by international copyright laws.</p>
               <p>When you purchase our Products, you are granted a personal, non-exclusive, non-transferable license to use the Products for your personal or professional writing development. You may not:</p>
               <ul>
                 <li>Redistribute, share, or resell any Products</li>
@@ -85,7 +85,7 @@ export default function TermsOfServicePage() {
               <p>We make no warranties about the accuracy, reliability, completeness, or timeliness of the content, services, software, text, graphics, links, or communications provided on or through our website.</p>
               
               <h2 style={{ color: headingColor, fontFamily: '"Playfair Display", serif' }}>8. Limitation of Liability</h2>
-              <p>In no event shall PlannerPalette be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or in any way connected with the use of our website, services, or Products.</p>
+              <p>In no event shall Literary Haven be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or in any way connected with the use of our website, services, or Products.</p>
               
               <h2 style={{ color: headingColor, fontFamily: '"Playfair Display", serif' }}>9. Changes to Terms</h2>
               <p>We reserve the right to modify these Terms of Service at any time. We will provide notice of significant changes by posting the updated terms on our website. Your continued use of our services following the posting of changes constitutes your acceptance of those changes.</p>
