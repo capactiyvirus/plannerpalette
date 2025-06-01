@@ -1,34 +1,51 @@
-// src/components/product/ProductDetailsCard.tsx
+// src/components/product/ProductDetailsCard.tsx (Updated import path)
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { FileText, Download } from 'lucide-react';
+import { FileText, Download, ShoppingCart, CheckCircle } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import { useCart } from '@/components/cart/cartcontext'; // Updated path
 import colors from '@/components/colors';
 
 interface ProductDetailsCardProps {
   product: {
+    id: string;
     title: string;
     description: string;
-    fileType: string;
+    fileType: "PDF" | "EPUB";
     etsyUrl: string;
+    imageUrl: string;
+    price: number;
   };
   formattedPrice: string;
 }
 
 export default function ProductDetailsCard({ product, formattedPrice }: ProductDetailsCardProps) {
   const { theme } = useTheme();
+  const { addItem } = useCart();
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
   
   // Theme-dependent colors
   const headingColor = theme === 'dark' ? colors.darkMode.text : colors.primary;
   const textColor = theme === 'dark' ? colors.darkMode.text + 'CC' : colors.dark;
   const priceColor = theme === 'dark' ? colors.light.parchment : colors.accent1;
   const buttonBgColor = theme === 'dark' ? colors.accent1 + 'DD' : colors.accent1;
+  const secondaryButtonBgColor = theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
   const cardBgColor = theme === 'dark' ? colors.darkMode.cardBg : 'white';
   
   // Get first paragraph of description for summary
   const descriptionSummary = product.description.split('\n')[0];
+  
+  const handleAddToCart = () => {
+    addItem(product);
+    setShowAddedMessage(true);
+    
+    // Hide message after 2 seconds
+    setTimeout(() => {
+      setShowAddedMessage(false);
+    }, 2000);
+  };
   
   return (
     <div className="p-6 rounded-lg shadow-sm transition-colors duration-300" style={{ backgroundColor: cardBgColor }}>
@@ -73,21 +90,42 @@ export default function ProductDetailsCard({ product, formattedPrice }: ProductD
         </p>
       </div>
       
-      <div className="flex flex-col sm:flex-row gap-3 mt-8">
+      <div className="mt-8 space-y-3">
+        <button 
+          onClick={handleAddToCart}
+          className="w-full inline-flex items-center justify-center px-6 py-3 rounded-md shadow-sm text-base font-medium text-white hover:opacity-90 transition-all"
+          style={{ backgroundColor: buttonBgColor }}
+        >
+          <ShoppingCart size={18} className="mr-2" />
+          Add to Cart
+        </button>
+        
+        {showAddedMessage && (
+          <div className="flex items-center justify-center text-sm mt-2 animate-fade-in" style={{ 
+            color: theme === 'dark' ? colors.light.parchment : 'green' 
+          }}>
+            <CheckCircle size={16} className="mr-1" />
+            Added to cart!
+          </div>
+        )}
+        
         <a 
           href={product.etsyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-6 py-3 rounded-md shadow-sm text-base font-medium text-white hover:opacity-90 transition-all"
-          style={{ backgroundColor: buttonBgColor }}
+          className="w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-medium transition-colors"
+          style={{ 
+            backgroundColor: secondaryButtonBgColor,
+            color: theme === 'dark' ? colors.darkMode.text : colors.primary
+          }}
         >
           <Download size={18} className="mr-2" />
-          Purchase on Etsy
+          View on Etsy
         </a>
         
         <Link 
           href="/products"
-          className="inline-flex items-center justify-center px-6 py-3 border rounded-md text-base font-medium transition-colors hover:bg-opacity-10"
+          className="w-full inline-flex items-center justify-center px-6 py-3 border rounded-md text-base font-medium transition-colors hover:bg-opacity-10"
           style={{ 
             borderColor: theme === 'dark' ? colors.darkMode.text + '40' : colors.accent2,
             color: theme === 'dark' ? colors.darkMode.text : colors.accent2,

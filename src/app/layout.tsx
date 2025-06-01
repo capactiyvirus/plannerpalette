@@ -5,6 +5,7 @@ import "./globals.css";
 import  SocialFooter from '@/components/SocialFooter';
 import Navigation from '@/components/Navigation';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { CartProvider } from '@/components/cart/cartcontext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,17 +30,17 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`} >
-      <ThemeProvider>
-        <div className="min-h-screen flex flex-col">
-          <main className="flex-grow">
-          <Navigation />
-          
-            {children}
-          </main>
-          
-          <SocialFooter />
-        </div>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
+        <ThemeProvider>
+          <CartProvider>
+            <div className="min-h-screen flex flex-col">
+              <main className="flex-grow">
+                <Navigation />
+                {children}
+              </main>
+              <SocialFooter />
+            </div>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

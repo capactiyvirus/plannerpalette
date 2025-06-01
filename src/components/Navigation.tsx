@@ -1,9 +1,10 @@
-// src/components/Navigation.tsx
+// src/components/Navigation.tsx (Updated)
 'use client';
 import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import ThemeToggle from '@/components/ThemeToggle';
+import CartIcon from '@/components/cart/carticon';
 import colors from '@/components/colors';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
@@ -29,7 +30,8 @@ const Navigation = ({ title = "Literary Haven" }) => {
               {title}
             </h1>
           </Link>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-4">
+            <CartIcon />
             <ThemeToggle />
             <button 
               onClick={() => setIsMenuOpen(true)}
