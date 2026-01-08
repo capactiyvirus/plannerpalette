@@ -1,5 +1,0 @@
-# Cloudflare Pages configuration for Next.js
-name = "plannerpallet"
-
-[pages]
-pages_build_output_dir = ".next"
