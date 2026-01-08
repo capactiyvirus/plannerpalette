@@ -3,12 +3,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { products } from '@/data/products';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-02-24.acacia',
-});
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2025-02-24.acacia',
+  });
+}
 
 export async function GET(req: NextRequest) {
   try {
+    const stripe = getStripe();
     const { searchParams } = new URL(req.url);
     const sessionId = searchParams.get('session_id');
 
