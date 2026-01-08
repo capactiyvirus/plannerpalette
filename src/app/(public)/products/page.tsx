@@ -9,7 +9,6 @@ import colors from '@/components/colors';
 import { useTheme } from '@/context/ThemeContext';
 import { motion } from 'framer-motion';
 import MobileTypewriterEffect from '@/components/TypeWriterEffect';
-import { useLoading } from '@/context/LoadingContext';
 
 
 
@@ -82,9 +81,7 @@ export default function ProductsPage() {
   const linkColor = theme === 'dark' ? colors.light.parchment : colors.accent1; // Kept your original
   const noResultsTextColor = theme === 'dark' ? colors.darkMode.text + '99' : '#6e725a'; // Better visibility
   const typewriterColor = theme === 'dark' ? colors.light.parchment : "#798274";
-  const { setLoading } = useLoading();
- 
- 
+
   // Filter function
   const getFilteredProducts = () => {
     if (activeFilter === 'all') {
@@ -108,12 +105,7 @@ export default function ProductsPage() {
   const filteredProducts = getFilteredProducts();
 
   const [livePrice, setLivePrice] = useState<{ [key: string]: number }>({});
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => setLoading(false), 1000); // Show for 3 seconds
-  }, [setLoading]);
 
-  
   useEffect(() => {
     products.forEach(product => {
       fetch(`/api/products/price?id=${product.priceId}`)

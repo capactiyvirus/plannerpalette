@@ -1,7 +1,12 @@
 'use client';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-const LoadingContext = createContext({
+interface LoadingContextType {
+  isLoading: boolean;
+  setLoading: (loading: boolean) => void;
+}
+
+const LoadingContext = createContext<LoadingContextType>({
   isLoading: false,
   setLoading: () => {},
 });
