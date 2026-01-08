@@ -6,12 +6,17 @@ import { useCart } from '@/components/cart/cartcontext';
 import { useTheme } from '@/context/ThemeContext';
 import colors from '@/components/colors';
 import { ArrowRight, AlertCircle } from 'lucide-react';
+import { useLoading } from '@/context/LoadingContext';
+
+
 
 const CartSummary: React.FC = () => {
-  const { totalItems, totalPrice } = useCart();
+  const { totalItems, totalPrice, items } = useCart(); // Added 'items' to get cart items
   const { theme } = useTheme();
   const [promoCode, setPromoCode] = useState('');
   const [promoError, setPromoError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
   
   // Theme-dependent colors
   const cardBgColor = theme === 'dark' ? colors.darkMode.cardBg : 'white';
@@ -35,53 +40,46 @@ const CartSummary: React.FC = () => {
   };
   
   const handleCheckout = async () => {
+    if (totalItems === 0) {
+      alert('Your cart is empty');
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
-      // Create the payment intent by calling your API
-      const response = await fetch('http://localhost:8080/api/payments/create-intent', {
+      // Map cart items to Stripe format
+      // You'll need to add stripePriceId to your product data
+      const lineItems = items.map(item => ({
+        priceId: item.product.priceId, // Make sure your product objects have this
+        quantity: item.quantity
+      }));
+
+      // Create Stripe Checkout Session
+      const response = await fetch('/api/create-checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          amount: 2000000, // Amount in cents
-          currency: 'usd',
-          description: 'Payment for order #1234',
-          metadata: {
-            customer_id: 'cust_123',
-            order_id: 'order_456'
-          }
+        body: JSON.stringify({ 
+          items: lineItems,
+          promoCode: promoCode || null // Pass promo code if applied
         })
       });
-  
+
       if (!response.ok) {
-        throw new Error('Payment intent creation failed');
+        throw new Error('Failed to create checkout session');
       }
-  
-      const data = await response.json();
+
+      const { url } = await response.json();
       
-      // Assuming your API returns the client_secret needed for Stripe
-      const { clientSecret } = data;
-      
-      // If you're using Stripe, you would typically redirect to a checkout page
-      // or use Stripe Elements to collect payment details
-      
-      // Option 1: If using Stripe Checkout
-      // window.location.href = `https://your-checkout-page?client_secret=${clientSecret}`;
-      
-      // Option 2: If using Stripe Elements in your app, store the client secret
-      // in state and show the payment form
-      // setClientSecret(clientSecret);
-      // setShowPaymentForm(true);
-      
-      console.log('Payment intent created successfully', data);
-      
-      // For demo purposes, we'll just redirect to a success page
-      // Replace with your actual checkout flow
-      window.location.href = `/checkout/payment?client_secret=${clientSecret}`;
+      // Redirect to Stripe Checkout
+      window.location.href = url;
       
     } catch (error) {
-      console.error('Error creating payment intent:', error);
-      alert('There was an error processing your payment. Please try again.');
+      console.error('Error creating checkout session:', error);
+      alert('There was an error processing your checkout. Please try again.');
+      setIsLoading(false);
     }
   };
   
@@ -184,11 +182,12 @@ const CartSummary: React.FC = () => {
         <div className="mt-8">
           <button
             onClick={handleCheckout}
-            className="w-full py-3 rounded-md flex items-center justify-center text-white transition-colors duration-300"
+            disabled={isLoading || totalItems === 0}
+            className="w-full py-3 rounded-md flex items-center justify-center text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             style={{ backgroundColor: buttonBgColor }}
           >
-            Proceed to Checkout
-            <ArrowRight size={16} className="ml-2" />
+            {isLoading ? 'Processing...' : 'Proceed to Checkout'}
+            {!isLoading && <ArrowRight size={16} className="ml-2" />}
           </button>
           
           <p className="text-xs mt-4 text-center" style={{ color: textColor }}>

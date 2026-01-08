@@ -13,7 +13,7 @@ import {
 
 const SocialFooter = () => {
   const socialLinks = [
-    { icon: <FaYoutube size={24} />, url: 'https://www.youtube.com/@PlannerPalette', label: 'YouTube' },
+    { icon: <FaYoutube size={24} />, url: 'https://www.youtube.com/@authorbrisarovski', label: 'YouTube' },
     { icon: <FaInstagram  size={24} />, url: 'https://www.instagram.com/plannerpaletteco/', label: 'Instagram' },
     { icon: <FaEtsy  size={24} />, url: 'https://www.etsy.com/ca/shop/PlannerPaletteCo', label: 'Etsy Store' },
     { icon: <SiThreads  size={24}/>, url: 'https://www.threads.net/@plannerpaletteco', label: 'Twitter' },

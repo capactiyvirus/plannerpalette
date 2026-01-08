@@ -1,13 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  // output: 'export', // ← Comment out or remove
   images: {
     unoptimized: true,
   },
   trailingSlash: true,
   distDir: 'out',
-  // Explicitly tell Next.js about the src directory
   reactStrictMode: true
 };
 

@@ -17,13 +17,15 @@ type CartContextType = {
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  prices: { [key: string]: number };
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
-  
+  const [prices, setPrices] = useState<{ [key: string]: number }>({});
+
   // Load cart from localStorage on initial mount
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
@@ -35,11 +37,28 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
   }, []);
-  
+
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(items));
   }, [items]);
+
+  // Fetch prices for all cart items
+  useEffect(() => {
+    items.forEach(item => {
+      if (!prices[item.product.id] && item.product.priceId) {
+        fetch(`/api/products/price?id=${item.product.priceId}`)
+          .then(res => res.json())
+          .then(data => {
+            setPrices(prev => ({
+              ...prev,
+              [item.product.id]: data.price
+            }));
+          })
+          .catch(err => console.error('Failed to fetch price:', err));
+      }
+    });
+  }, [items, prices]);
   
   // Add a product to the cart
   const addItem = (product: Product) => {
@@ -90,9 +109,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // Calculate total number of items
   const totalItems = items.reduce((total, item) => total + item.quantity, 0);
   
-  // Calculate total price
+  // Calculate total price using fetched prices
   const totalPrice = items.reduce(
-    (total, item) => total + (item.product.price * item.quantity), 
+    (total, item) => {
+      const price = prices[item.product.id] || 0;
+      return total + (price * item.quantity);
+    },
     0
   );
   
@@ -104,7 +126,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       updateQuantity,
       clearCart,
       totalItems,
-      totalPrice
+      totalPrice,
+      prices
     }}>
       {children}
     </CartContext.Provider>

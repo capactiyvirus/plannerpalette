@@ -15,16 +15,17 @@ const colors = {
   },
   // Dark mode variants
   darkMode: {
-    primary: '#1a2a29',    // Darker teal
+    primary: '#141f1e',    // Darker teal for banner/hero sections
     secondary: '#7d7d63',  // Darker sage
     accent1: '#515541',    // Darker olive
     accent2: '#565f55',    // Darker muted green
     accent3: '#596457',    // Darker forest green
     dark: '#28282a',       // Darker olive
     darkTeal: '#1a2827',   // Darker teal
-    background: '#192121', // Very dark teal for backgrounds
+    background: '#1f2d2c', // Lighter background for better visibility
     text: '#E8E6D9',       // Light color for text
-    cardBg: '#243332'      // Slightly lighter than background for cards
+    cardBg: '#243332',     // Slightly lighter than background for cards
+    navbarBg: '#1a2524'    // Slightly lighter for top navbar (Literary Haven, cart, theme toggle)
   }
 };
 

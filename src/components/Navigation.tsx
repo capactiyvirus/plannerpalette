@@ -15,9 +15,9 @@ const Navigation = ({ title = "Literary Haven" }) => {
   
   return (
     <>
-      <header className="fixed top-0 w-full z-40 shadow-sm transition-colors" 
-        style={{ 
-          backgroundColor: theme === 'dark' ? colors.darkMode.background : 'white',
+      <header className="fixed top-0 w-full z-40 shadow-sm transition-colors"
+        style={{
+          backgroundColor: theme === 'dark' ? colors.darkMode.navbarBg : 'white',
           color: theme === 'dark' ? colors.darkMode.text : colors.primary
         }}>
         <div className="flex justify-between items-center p-2">

@@ -25,13 +25,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl mb-6 transition-colors duration-300" style={{
-              fontFamily: '"Playfair Display", serif',
+              //fontFamily: '"Playfair Display", serif',
               color: headingColor
             }}>
               Make Your Novel a Masterpiece
             </h1>
             <p className="text-x2 mb-8 max-w-2xl mx-auto transition-colors duration-300" style={{
-              fontFamily: '"Lora", serif',
+              // fontFamily: '"Lora", serif',
               color: subheadingColor
             }}>
               Struggling with plot holes, flat characters, or writer&apos;s block? My specialized workbooks guide you through all the core elements (and finer details) of your story so that you can craft a book readers can&apos;t put down. No more staring at blank pages wondering where to begin.

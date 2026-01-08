@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { products } from '@/data/products';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,9 +9,63 @@ import colors from '@/components/colors';
 import { useTheme } from '@/context/ThemeContext';
 import { motion } from 'framer-motion';
 import MobileTypewriterEffect from '@/components/TypeWriterEffect';
+import { useLoading } from '@/context/LoadingContext';
+
+
+
+
+
+
+
+function ProductImageWithVideo({ product, isHovered, onMouseEnter, onMouseLeave }: {
+  product: any;
+  isHovered: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (videoRef.current && product.videoUrl) {
+      if (isHovered) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+  }, [isHovered, product.videoUrl]);
+
+  return (
+    <div className="relative h-64 w-full" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <Image
+        src={product.imageUrl}
+        alt={product.title}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover rounded-t-lg"
+        priority={false}
+        style={{ opacity: isHovered && product.videoUrl ? 0 : 1, transition: 'opacity 0.3s' }}
+      />
+      {product.videoUrl && (
+        <video
+          ref={videoRef}
+          src={product.videoUrl}
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+          style={{ opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s' }}
+        />
+      )}
+    </div>
+  );
+}
+
 export default function ProductsPage() {
   const { theme } = useTheme();
   const [activeFilter, setActiveFilter] = useState('all');
+  const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
 
   // Theme-dependent colors - ONLY THESE ARE MODIFIED
   const bgColor = theme === 'dark' ? colors.darkMode.background : colors.light.cream;
@@ -28,6 +82,9 @@ export default function ProductsPage() {
   const linkColor = theme === 'dark' ? colors.light.parchment : colors.accent1; // Kept your original
   const noResultsTextColor = theme === 'dark' ? colors.darkMode.text + '99' : '#6e725a'; // Better visibility
   const typewriterColor = theme === 'dark' ? colors.light.parchment : "#798274";
+  const { setLoading } = useLoading();
+ 
+ 
   // Filter function
   const getFilteredProducts = () => {
     if (activeFilter === 'all') {
@@ -50,6 +107,29 @@ export default function ProductsPage() {
 
   const filteredProducts = getFilteredProducts();
 
+  const [livePrice, setLivePrice] = useState<{ [key: string]: number }>({});
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 1000); // Show for 3 seconds
+  }, []);
+
+  
+  useEffect(() => {
+    products.forEach(product => {
+      fetch(`/api/products/price?id=${product.priceId}`)
+          .then(res => res.json())
+          .then(data => {
+            setLivePrice(prev => ({
+              ...prev,
+              [product.id]: data.price
+            }));
+          });
+        });
+    }, []);
+
+
+
+  // HTML starts here
   return (
     <div className="min-h-screen transition-colors duration-300" style={{ backgroundColor: bgColor }}>
       {/* Hero Banner */}
@@ -59,13 +139,13 @@ export default function ProductsPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl mb-6 transition-colors duration-300" style={{
-            fontFamily: '"Playfair Display", serif',
+            //fontFamily: '"Playfair Display", serif',
             color: heroTextColor
           }}>
             Writing Guides & Resources
           </h1>
           <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 transition-colors duration-300" style={{
-            fontFamily: '"Lora", serif',
+            //fontFamily: '"Lora", serif',
             color: heroSubtextColor
           }}>
             Discover our collection of professionally crafted writing guides to enhance your storytelling journey
@@ -109,7 +189,7 @@ export default function ProductsPage() {
                 color: activeFilter === filter.id 
                   ? 'white' 
                   : inactiveFilterTextColor,
-                fontFamily: '"Lora", serif'
+                //fontFamily: '"Lora", serif'
               }}
             >
               {filter.label}
@@ -125,29 +205,25 @@ export default function ProductsPage() {
           transition={{ duration: 0.5 }}
         >
           {filteredProducts.map(product => (
-            <motion.div 
-            key={product.id} 
+            <motion.div
+            key={product.id}
             className="flex flex-col relative group rounded-lg shadow-md transition-all duration-300 hover:shadow-lg h-[520px] overflow-hidden"
             whileHover={{ y: -5 }}
             style={{ backgroundColor: cardBgColor }}
           >
               <Link href={`/products/${product.id}`} className="flex-grow">
-              <div className="relative h-64 w-full">
-                <Image 
-                  src={product.imageUrl}
-                  alt={product.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover rounded-t-lg"
-                  priority={false}
-                />
-              </div>
+              <ProductImageWithVideo
+                product={product}
+                isHovered={hoveredProduct === product.id}
+                onMouseEnter={() => setHoveredProduct(product.id)}
+                onMouseLeave={() => setHoveredProduct(null)}
+              />
               
               <div className="p-6 flex-grow">
                 <div className="h-12 mb-2">
                   
                 <h3 className="text-xl transition-colors duration-300" style={{ 
-                    fontFamily: '"Playfair Display", serif',
+                    //fontFamily: '"Playfair Display", serif',
                     color: headingColor
                   }}>
                     {product.title}
@@ -155,7 +231,7 @@ export default function ProductsPage() {
                 </div>
                 <div className="h-12 mb-2">
                 <p className="text-sm transition-colors duration-300 line-clamp-4" style={{ 
-                  fontFamily: '"Lora", serif',
+                  //fontFamily: '"Lora", serif',
                   color: textColor
                 }}>
                   {product.description}
@@ -167,7 +243,7 @@ export default function ProductsPage() {
                 
                 <div className="mt-auto p-3 pt-3">
                 <div className="flex items-center justify-between mb-4">
-                <span className="text-1xl font-bold" style={{ color: priceTagTextColor }}>{product.price.toFixed(2)}</span>
+                <span className="text-1xl font-bold" style={{ color: priceTagTextColor }}>{livePrice[product.id]?.toFixed(2)}</span>
                 
                 <span className="inline-flex items-center px-2 py-1 rounded-full text-xs transition-colors duration-300"
                         style={{

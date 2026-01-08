@@ -26,7 +26,7 @@ const MobileHome = () => {
       {/* Mobile Hero Section */}
       <section className="py-5 transition-colors duration-300" style={{ backgroundColor: heroSectionBg }}>
         <div className="px-4 py-12 text-center">
-          <h2 className={`text-5xl mb-4 font-serif transition-colors duration-300 ${heroTextColor}`}>
+          <h2 className={`text-5xl mb-4 transition-colors duration-300 ${heroTextColor}`}>
             Craft Your Story
           </h2>
           <p className={`mb-4 transition-colors duration-300 ${heroSubtextColor}`}>

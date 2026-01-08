@@ -11,7 +11,7 @@ import { Trash2, Minus, Plus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import CartSummary from '@/components/cart/CartSummary';
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, totalItems } = useCart();
+  const { items, removeItem, updateQuantity, totalItems, prices } = useCart();
   const { theme } = useTheme();
   
   // Theme-dependent colors
@@ -95,14 +95,14 @@ export default function CartPage() {
                           
                           {/* Price and Actions */}
                           <div className="flex flex-wrap items-center justify-between gap-4">
-                            <span 
-                              className="font-medium transition-colors duration-300" 
+                            <span
+                              className="font-medium transition-colors duration-300"
                               style={{ color: theme === 'dark' ? colors.light.parchment : colors.accent1 }}
                             >
-                              {new Intl.NumberFormat('en-US', {
+                              {prices[item.product.id] ? new Intl.NumberFormat('en-US', {
                                 style: 'currency',
                                 currency: 'CAD'
-                              }).format(item.product.price)}
+                              }).format(prices[item.product.id]) : 'Loading...'}
                             </span>
                             
                             <div className="flex items-center space-x-4">

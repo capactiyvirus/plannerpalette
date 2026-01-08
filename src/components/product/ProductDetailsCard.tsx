@@ -16,7 +16,9 @@ interface ProductDetailsCardProps {
     fileType: "PDF" | "EPUB";
     etsyUrl: string;
     imageUrl: string;
-    price: number;
+    //price: number;
+    priceId: string;
+    price?: number;
   };
   formattedPrice: string;
 }
@@ -91,23 +93,28 @@ export default function ProductDetailsCard({ product, formattedPrice }: ProductD
       </div>
       
       <div className="mt-8 space-y-3">
-        <button 
+        <button
           onClick={handleAddToCart}
-          className="w-full inline-flex items-center justify-center px-6 py-3 rounded-md shadow-sm text-base font-medium text-white hover:opacity-90 transition-all"
-          style={{ backgroundColor: buttonBgColor }}
+          disabled={showAddedMessage}
+          className="w-full inline-flex items-center justify-center px-6 py-3 rounded-md shadow-sm text-base font-medium text-white hover:opacity-90 transition-all duration-300"
+          style={{
+            backgroundColor: showAddedMessage
+              ? (theme === 'dark' ? '#22c55e' : '#16a34a')
+              : buttonBgColor
+          }}
         >
-          <ShoppingCart size={18} className="mr-2" />
-          Add to Cart
+          {showAddedMessage ? (
+            <>
+              <CheckCircle size={18} className="mr-2" />
+              Added to Cart!
+            </>
+          ) : (
+            <>
+              <ShoppingCart size={18} className="mr-2" />
+              Add to Cart
+            </>
+          )}
         </button>
-        
-        {showAddedMessage && (
-          <div className="flex items-center justify-center text-sm mt-2 animate-fade-in" style={{ 
-            color: theme === 'dark' ? colors.light.parchment : 'green' 
-          }}>
-            <CheckCircle size={16} className="mr-1" />
-            Added to cart!
-          </div>
-        )}
         
         <a 
           href={product.etsyUrl}

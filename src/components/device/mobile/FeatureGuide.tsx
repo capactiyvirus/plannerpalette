@@ -15,7 +15,7 @@ const FeatureGuide = () => {
   return (
     <div>
       <h3 
-        className="text-2xl text-center mb-8 font-serif transition-colors duration-300" 
+        className="text-2xl text-center mb-8 transition-colors duration-300" 
         style={{ color: titleColor }}
       >
         Top Workbooks

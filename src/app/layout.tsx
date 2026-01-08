@@ -6,6 +6,7 @@ import  SocialFooter from '@/components/SocialFooter';
 import Navigation from '@/components/Navigation';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { CartProvider } from '@/components/cart/cartcontext';
+import { LoadingProvider } from '@/context/LoadingContext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,9 @@ export default function RootLayout({
   
   return (
     <html lang="en">
+      
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
+      <LoadingProvider>
         <ThemeProvider>
           <CartProvider>
             <div className="min-h-screen flex flex-col">
@@ -42,6 +45,7 @@ export default function RootLayout({
             </div>
           </CartProvider>
         </ThemeProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

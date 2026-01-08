@@ -37,7 +37,7 @@ const FeatureCard = ({ icon, title, description, color }: FeatureCardProps) => {
       <h3 
         className="text-xl mb-2 transition-colors duration-300"
         style={{ 
-          fontFamily: '"Playfair Display", serif',
+          //fontFamily: '"Playfair Display", serif',
           color: titleColor 
         }}
       >
@@ -46,7 +46,7 @@ const FeatureCard = ({ icon, title, description, color }: FeatureCardProps) => {
       <p 
         className="transition-colors duration-300"
         style={{ 
-          fontFamily: '"Lora", serif',
+          //fontFamily: '"Lora", serif',
           color: textColor 
         }}
       >

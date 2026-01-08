@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useLoading } from '@/context/LoadingContext';
 
 import {  BookOpen, PenTool, Users, Award } from 'lucide-react';
 import colors from '@/components/colors';
@@ -9,7 +10,8 @@ import { useTheme } from '@/context/ThemeContext';
 
 export default function AboutPortfolioPage() {
   const { theme } = useTheme();
-  
+  const { setLoading } = useLoading();
+
   // Theme-dependent colors
   const bgColor = theme === 'dark' ? colors.darkMode.background : colors.light.cream;
   const headingColor = theme === 'dark' ? colors.darkMode.text : colors.primary;
@@ -20,7 +22,11 @@ export default function AboutPortfolioPage() {
   const lightText = theme === 'dark' ? colors.darkMode.text : 'white';
   const subtleText = theme === 'dark' ? colors.light.parchment : colors.light.parchment;
   //const tagBgColor = theme === 'dark' ? colors.darkMode.cardBg + '80' : colors.light.mint;
-  
+  const handleAction = async () => {
+    setLoading(true);
+    await fetch('/api/...');
+    setLoading(false);
+  };
   // Portfolio projects - replace with your actual projects
   // const portfolioProjects = [
   //   {
