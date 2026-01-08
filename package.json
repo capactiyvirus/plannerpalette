@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
-    "build": "next build && rm -rf .next/cache",
+    "build": "next build && rm -rf out/cache",
     "start": "next start",
     "lint": "next lint"
   },
@@ -26,6 +26,7 @@
     "stripe": "^17.7.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
