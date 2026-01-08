@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
-import { products } from '@/data/products';
+import { products, Product } from '@/data/products';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
@@ -18,7 +18,7 @@ import { useLoading } from '@/context/LoadingContext';
 
 
 function ProductImageWithVideo({ product, isHovered, onMouseEnter, onMouseLeave }: {
-  product: any;
+  product: Product;
   isHovered: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -111,7 +111,7 @@ export default function ProductsPage() {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => setLoading(false), 1000); // Show for 3 seconds
-  }, []);
+  }, [setLoading]);
 
   
   useEffect(() => {

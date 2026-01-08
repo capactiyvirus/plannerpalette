@@ -206,7 +206,7 @@ export default function CartPage() {
                 color: textColor 
               }}
             >
-              Looks like you haven't added any writing resources to your cart yet. 
+              Looks like you haven&apos;t added any writing resources to your cart yet. 
               Explore our collection to find guides that will help you on your writing journey.
             </p>
             

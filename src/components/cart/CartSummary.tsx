@@ -6,7 +6,6 @@ import { useCart } from '@/components/cart/cartcontext';
 import { useTheme } from '@/context/ThemeContext';
 import colors from '@/components/colors';
 import { ArrowRight, AlertCircle } from 'lucide-react';
-import { useLoading } from '@/context/LoadingContext';
 
 
 

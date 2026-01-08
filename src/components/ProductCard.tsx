@@ -6,7 +6,7 @@ import { Product } from '@/data/products';
 import Image from 'next/image';
 import { useTheme } from '@/context/ThemeContext';
 import { useCart } from '@/components/cart/cartcontext'; // Updated path
-import { ArrowRight, ShoppingCart, CheckCircle } from 'lucide-react';
+import { ShoppingCart, CheckCircle } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import colors from '@/components/colors';
 

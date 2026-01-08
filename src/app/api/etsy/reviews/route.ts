@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
     const data = await response.json();
 
     // Transform the reviews to a cleaner format
-    const reviews = data.results?.map((review: any) => ({
+    const reviews = data.results?.map((review: { transaction_id: string; rating: number; review: string; created_timestamp: number; buyer_user_id?: string }) => ({
       id: review.transaction_id,
       rating: review.rating,
       review: review.review,
@@ -47,10 +47,10 @@ export async function GET(req: NextRequest) {
       count: data.count || 0,
       reviews
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error fetching Etsy reviews:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to fetch reviews' },
+      { error: error instanceof Error ? error.message : 'Failed to fetch reviews' },
       { status: 500 }
     );
   }

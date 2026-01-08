@@ -22,11 +22,6 @@ export default function AboutPortfolioPage() {
   const lightText = theme === 'dark' ? colors.darkMode.text : 'white';
   const subtleText = theme === 'dark' ? colors.light.parchment : colors.light.parchment;
   //const tagBgColor = theme === 'dark' ? colors.darkMode.cardBg + '80' : colors.light.mint;
-  const handleAction = async () => {
-    setLoading(true);
-    await fetch('/api/...');
-    setLoading(false);
-  };
   // Portfolio projects - replace with your actual projects
   // const portfolioProjects = [
   //   {

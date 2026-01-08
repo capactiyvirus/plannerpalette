@@ -128,7 +128,7 @@ export default function ProductReviews({ reviews, etsyUrl }: ProductReviewsProps
                 fontFamily: '"Lora", serif',
                 color: textColor
               }}>
-                "{review.review}"
+                &quot;{review.review}&quot;
               </p>
             )}
 

@@ -51,9 +51,9 @@ export default function SuccessPage() {
         setCustomerEmail(data.customerEmail);
         setProducts(data.products);
         setLoading(false);
-      } catch (err: any) {
+      } catch (err) {
         console.error('Error fetching session:', err);
-        setError(err.message || 'Failed to verify your purchase');
+        setError(err instanceof Error ? err.message : 'Failed to verify your purchase');
         setLoading(false);
       }
     };
@@ -138,8 +138,8 @@ export default function SuccessPage() {
                 Check Your Email
               </h3>
               <p className="text-sm transition-colors duration-300" style={{ color: textColor }}>
-                We've sent a confirmation email to <strong>{customerEmail}</strong> with your download link(s).
-                If you don't see it, check your spam folder.
+                We&apos;ve sent a confirmation email to <strong>{customerEmail}</strong> with your download link(s).
+                If you don&apos;t see it, check your spam folder.
               </p>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function SuccessPage() {
           backgroundColor: cardBgColor
         }}>
           <h3 className="font-semibold mb-3 transition-colors duration-300" style={{ color: headingColor }}>
-            What's Next?
+            What&apos;s Next?
           </h3>
           <ul className="space-y-2 text-sm transition-colors duration-300" style={{ color: textColor }}>
             <li className="flex items-start gap-2">

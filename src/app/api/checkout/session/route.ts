@@ -56,10 +56,10 @@ export async function GET(req: NextRequest) {
       customerEmail,
       products: purchasedProducts,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error retrieving session:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to retrieve session' },
+      { error: error instanceof Error ? error.message : 'Failed to retrieve session' },
       { status: 500 }
     );
   }
