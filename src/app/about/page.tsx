@@ -2,15 +2,12 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useLoading } from '@/context/LoadingContext';
-
 import {  BookOpen, PenTool, Users, Award } from 'lucide-react';
 import colors from '@/components/colors';
 import { useTheme } from '@/context/ThemeContext';
 
 export default function AboutPortfolioPage() {
   const { theme } = useTheme();
-  const { setLoading } = useLoading();
 
   // Theme-dependent colors
   const bgColor = theme === 'dark' ? colors.darkMode.background : colors.light.cream;
