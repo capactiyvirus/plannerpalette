@@ -1,0 +1,29 @@
+# Cloudflare Pages ignore file
+# These files won't be uploaded to Cloudflare Pages
+
+# Cache directories
+.next/cache
+cache/
+.cache/
+
+# Development files
+node_modules/
+.env*
+.git/
+
+# Build artifacts that aren't needed
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
